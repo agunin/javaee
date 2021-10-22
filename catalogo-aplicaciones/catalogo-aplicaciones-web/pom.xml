@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <parent>
+      <artifactId>catalogo-aplicaciones</artifactId>
+      <groupId>uy.bse.catalogoaplicaciones</groupId>
+      <version>0.0.1-SNAPSHOT</version>
+   </parent>
+
+   <artifactId>catalogo-aplicaciones-web</artifactId>
+   <packaging>war</packaging>
+
+
+   <dependencies>
+
+      <!-- Dependency on the EJB module so we can use it's services if needed -->
+      <dependency>
+         <groupId>uy.bse.catalogoaplicaciones</groupId>
+         <artifactId>catalogo-aplicaciones-ejb</artifactId>
+         <type>ejb</type>
+         <scope>provided</scope>
+      </dependency>
+
+   </dependencies>
+
+   <build>
+      <!-- <finalName>${project.artifactId}</finalName> -->
+      <plugins>
+         <plugin>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>${version.war.plugin}</version>
+            <configuration>
+               <!-- Java EE 7 doesn't require web.xml, Maven needs to catch up! -->
+               <failOnMissingWebXml>false</failOnMissingWebXml>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+</project>
