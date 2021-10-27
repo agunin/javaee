@@ -10,8 +10,8 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>catalogo-aplicaciones-ejb</artifactId>
-	<packaging>ejb</packaging>
+	<artifactId>catalogo-aplicaciones-entity</artifactId>
+	<packaging>jar</packaging>
 
 
 	<dependencies>
@@ -21,14 +21,8 @@
 		      <version>7.0</version>
 		      <scope>provided</scope>
 		 </dependency>
-		 
-		  <dependency>
-	         <groupId>uy.bse.catalogoaplicaciones</groupId>
-	         <artifactId>catalogo-aplicaciones-entity</artifactId>
-	         <type>jar</type>
-	         <scope>provided</scope>
-	      </dependency>
- 	</dependencies>
+    
+	</dependencies>
 
 	<build>
 		<!-- <finalName>${project.artifactId}</finalName> -->

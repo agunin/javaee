@@ -9,7 +9,7 @@
       <version>0.0.1-SNAPSHOT</version>
    </parent>
 
-   <artifactId>catalogo-aplicaciones-web</artifactId>
+   <artifactId>catalogo-aplicaciones-web-admin</artifactId>
    <packaging>war</packaging>
 
 
@@ -22,13 +22,14 @@
          <type>ejb</type>
          <scope>provided</scope>
       </dependency>
-
-	<dependency>
+      
+      <dependency>
          <groupId>uy.bse.catalogoaplicaciones</groupId>
          <artifactId>catalogo-aplicaciones-entity</artifactId>
          <type>jar</type>
          <scope>provided</scope>
       </dependency>
+      
 
  	<dependency>
       <groupId>javax</groupId>

@@ -13,7 +13,9 @@
 	<modules>
 		<module>catalogo-aplicaciones-ejb</module>
 		<module>catalogo-aplicaciones-web</module>
+		<module>catalogo-aplicaciones-web-admin</module>
 		<module>catalogo-aplicaciones-ear</module>
+		<module>catalogo-aplicaciones-entity</module>
 	</modules>
 
 	<properties>
@@ -30,7 +32,7 @@
 		<version.ear.plugin>3.2.0</version.ear.plugin>
 		<version.ejb.plugin>3.1.0</version.ejb.plugin>
 		<version.war.plugin>3.3.2</version.war.plugin>
-		
+
 		<!-- Version de Java a utilizar por el proyecto -->
 		<maven.compiler.release>11</maven.compiler.release>
 		<maven.compiler.source>11</maven.compiler.source>
@@ -49,12 +51,27 @@
 				<version>${project.version}</version>
 				<type>ejb</type>
 			</dependency>
+			
+			<dependency>
+				<groupId>uy.bse.catalogoaplicaciones</groupId>
+				<artifactId>catalogo-aplicaciones-entity</artifactId>
+				<version>${project.version}</version>
+				<type>jar</type>
+			</dependency>
 
 			<!-- Define the version of the WAR so that we don't need to repeat ourselves 
 				in every module -->
 			<dependency>
 				<groupId>uy.bse.catalogoaplicaciones</groupId>
 				<artifactId>catalogo-aplicaciones-web</artifactId>
+				<version>${project.version}</version>
+				<type>war</type>
+				<scope>compile</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>uy.bse.catalogoaplicaciones</groupId>
+				<artifactId>catalogo-aplicaciones-web-admin</artifactId>
 				<version>${project.version}</version>
 				<type>war</type>
 				<scope>compile</scope>
@@ -67,7 +84,6 @@
 				<scope>provided</scope>
 			</dependency>
 		</dependencies>
-
 	</dependencyManagement>
 
 	<build>

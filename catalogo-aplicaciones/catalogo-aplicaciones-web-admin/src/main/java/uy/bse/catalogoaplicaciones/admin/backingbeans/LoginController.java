@@ -1,4 +1,4 @@
-package uy.bse.catalogoaplicaciones.backingbeans;
+package uy.bse.catalogoaplicaciones.admin.backingbeans;
 
 import java.util.Date;
 
@@ -7,8 +7,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
-import uy.bse.catalogoaplicaciones.model.LoginLogeado;
-import uy.bse.catalogoaplicaciones.model.LoginModel;
+import uy.bse.catalogoaplicaciones.admin.model.LoginLogeado;
+import uy.bse.catalogoaplicaciones.admin.model.LoginModel;
 
 
 @Model

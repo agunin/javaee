@@ -1,4 +1,4 @@
-package uy.bse.catalogoaplicaciones.model;
+package uy.bse.catalogoaplicaciones.admin.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
