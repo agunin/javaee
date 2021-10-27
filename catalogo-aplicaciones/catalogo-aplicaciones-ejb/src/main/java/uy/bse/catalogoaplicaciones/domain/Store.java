@@ -1,4 +1,4 @@
-package uy.bse.catalogoaplicaciones.model;
+package uy.bse.catalogoaplicaciones.domain;
 
 public class Store implements SolIfra {
 

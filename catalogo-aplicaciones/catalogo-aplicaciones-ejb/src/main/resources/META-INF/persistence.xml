@@ -5,19 +5,25 @@
              version="2.1">
 
     <!-- Persistence Unit para desarrollo -->
-    <persistence-unit name="catalogo_aplicaciones" transaction-type="RESOURCE_LOCAL">
-        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <persistence-unit name="catalogo_aplicaciones" transaction-type="JTA">
+        
+        <!--  eclipselink es el provider  -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        
+        <!--  entities del proyecto -->
+        <class>uy.bse.catalogoaplicaciones.domain.Usuario</class>
+       
+        
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
             <property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>
-            <property name="javax.persistence.schema-generation.scripts.create-target" value="practico03DBCreate.ddl"/>
-            <property name="javax.persistence.schema-generation.scripts.drop-target" value="practico03DBDrop.ddl"/>
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="script_create.ddl"/>
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="script_drop.ddl"/>
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.iapi.jdbc.AutoloadedDriver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/practico03DB;create=true;territory=en_US"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/catalogo_aplicaciones_db;create=true;territory=en_US"/>
             <property name="javax.persistence.jdbc.user" value="APP"/>
             <property name="javax.persistence.jdbc.password" value="APP"/>
             <property name="javax.persistence.sql-load-script-source" value="insert.sql"/>
-            <property name="eclipselink.logging.level" value="INFO"/>
         </properties>
     </persistence-unit>
 </persistence>
