@@ -1,5 +1,13 @@
 package uy.bse.catalogoaplicaciones.domain;
 
-public class Cluster implements SolIfra {
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("CLUSTER")
+public class Cluster extends SolIfra {
+
+	private static final long serialVersionUID = 1L;
 
 }
+

@@ -1,19 +1,32 @@
 package uy.bse.catalogoaplicaciones.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Usuario extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@Column(name = "idUsuario")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@NotNull
 	private String nombre;
+	
+	@NotNull
 	private String apellido;
+	
+	@NotNull
 	private String documentoIdentidad;
+	
+	//validator format mail
 	private String email;
 
 	public Usuario() {
@@ -30,8 +43,6 @@ public class Usuario extends BaseEntity<Long> {
 		this.email = email;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
