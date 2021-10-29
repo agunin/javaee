@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
@@ -34,7 +36,8 @@ public class Solucion extends BaseEntity<Long> {
 	@Basic(fetch = FetchType.LAZY)
 	private String descripcion;
 	
-	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
+	//@OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany // 1 - N (Solucion --> ComponenteSoftware)
 	private List<ComponenteSoftware> componentesSoftware;
 
 	public Solucion() {

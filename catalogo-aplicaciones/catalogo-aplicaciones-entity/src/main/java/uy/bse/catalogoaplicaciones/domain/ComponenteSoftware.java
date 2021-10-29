@@ -11,10 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Lob;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+//@Table(name = "Componente_Software") por defecto le pone de nombre ComponenteSoftware
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class ComponenteSoftware extends BaseEntity<Long> {
 
