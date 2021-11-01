@@ -18,7 +18,7 @@ public class LoginModel implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		Login u1 = new Login("admin", "admin");
+		Login u1 = new Login("login", "admin");
 		Login u2 = new Login("login1", "admin1");
 		Login u3 = new Login("login2", "admin2");
 		Login u4 = new Login("login3", "admin3");
@@ -32,7 +32,7 @@ public class LoginModel implements Serializable {
 	}
 	
 	
-	public Login findLoginUsuario(String username) {
+	public Login findLogin(String username) {
 		return loginUsuarios.stream()
 				  .filter(Login -> username.equals(Login.getUsername()))
 				  .findFirst()
@@ -42,7 +42,7 @@ public class LoginModel implements Serializable {
 	public boolean autenticar(String username, String password) {
 		boolean autenticar = false;
 		
-		Login Login = findLoginUsuario(username);
+		Login Login = findLogin(username);
 		
 		if (Login != null && Login.getPassword().equals(password)) {
 			autenticar = true;

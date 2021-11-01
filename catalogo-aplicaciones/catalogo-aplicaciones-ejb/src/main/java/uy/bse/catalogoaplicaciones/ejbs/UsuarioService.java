@@ -10,7 +10,6 @@ import uy.bse.catalogoaplicaciones.domain.Usuario;
 
 /**
  * Servicio EJB para la entity Usuario
- * @author juan
  *
  */
 @Stateless
@@ -26,7 +25,7 @@ public class UsuarioService extends AbstractService<Usuario, Long>{
 	
 	@SuppressWarnings("unchecked")
 	public List<Usuario> getUsuarios() {
-		return em.createQuery("select u from Usurio p order by u.nombre,u.apellido").getResultList();
+		return em.createQuery("select u from Usuario u order by u.nombre,u.apellido").getResultList();
 	}
 		
 	

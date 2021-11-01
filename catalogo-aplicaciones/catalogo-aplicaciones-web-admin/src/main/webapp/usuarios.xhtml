@@ -53,8 +53,8 @@
 						
 					</p:column>
 
-					<p:column headerText="#{labels['usuario.nroDocumento']}">
-						<h:outputText value="#{usuario.nroDocumento}" />
+					<p:column headerText="#{labels['usuario.documentoIdentidad']}">
+						<h:outputText value="#{usuario.documentoIdentidad}" />
 					</p:column>
 
 					<p:column headerText="#{labels['usuario.nombre']}">
@@ -65,18 +65,8 @@
 						<h:outputText value="#{usuario.apellido}" />
 					</p:column>
 
-					<p:column headerText="#{labels['usuario.sexo']}">
-						<h:outputText value="#{usuario.sexo}" />
-					</p:column>
-
-					<p:column headerText="#{labels['usuario.fechaNacimiento']}">
-						<h:outputText value="#{usuario.fechaNacimiento}">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:outputText>
-					</p:column>
-
-					<p:column headerText="#{labels['usuario.profesion']}">
-						<h:outputText value="#{usuario.profesion.descripcion}" />
+					<p:column headerText="#{labels['usuario.email']}">
+						<h:outputText value="#{usuario.email}" />
 					</p:column>
 				</p:dataTable>
 			</div>

@@ -6,13 +6,6 @@ import javax.persistence.PersistenceContext;
 
 import uy.bse.catalogoaplicaciones.domain.BaseEntity;
 
-/**
- * Servicio base utilizado desde el BaseEntityConverter
- * @see uy.org.curso.converters.BaseEntityConverter
- * expone un unico metodo que se utiliza desde el converter
- * @author juan
- *
- */
 @Stateless
 public class BaseService {
 

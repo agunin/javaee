@@ -21,7 +21,7 @@ public class Interface extends ComponenteSoftware {
 	@Column(name = "tipoInterface", nullable = false)
 	@Enumerated(value = EnumType.STRING)
 	@NotNull
-	private String tipoInterface;
+	private InterfaceTipo tipoInterface;
 	/*
 	 * @Id
 	 * 
@@ -34,30 +34,32 @@ public class Interface extends ComponenteSoftware {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Interface(String tipoInterface) {
+
+	public Interface(InterfaceTipo tipoInterface) {
 		super();
 		this.tipoInterface = tipoInterface;
 	}
 
-	public String getTipoInterface() {
+	public InterfaceTipo getTipoInterface() {
 		return tipoInterface;
 	}
 
-	public void setTipoInterface(String tipoInterface) {
+	public void setTipoInterface(InterfaceTipo tipoInterface) {
 		this.tipoInterface = tipoInterface;
 	}
 
-	/*@ManyToOne()
-	@JoinColumn(name = "proveeInterface")
-	private Aplicacion aplicaiconProvee;
+	/*
+	 * @ManyToOne()
+	 * 
+	 * @JoinColumn(name = "proveeInterface") private Aplicacion aplicaiconProvee;
+	 * 
+	 * 
+	 * @ManyToOne()
+	 * 
+	 * @JoinColumn(name = "idAplicacion") private List<Aplicacion>
+	 * aplicaiconConsume;
+	 */
 
-	
-	@ManyToOne()
-	@JoinColumn(name = "idAplicacion")
-	private List<Aplicacion> aplicaiconConsume;
-*/
-	
 	/*
 	 * public Long getId() { return id; }
 	 * 
@@ -70,12 +72,11 @@ public class Interface extends ComponenteSoftware {
 	 * public void setAplicaiconProvee(Aplicacion aplicaiconProvee) {
 	 * this.aplicaiconProvee = aplicaiconProvee; }
 	 */
-	/*public List<Aplicacion> getAplicaiconConsume() {
-		return aplicaiconConsume;
-	}
-
-	public void setAplicaiconConsume(List<Aplicacion> aplicaiconConsume) {
-		this.aplicaiconConsume = aplicaiconConsume;
-	}*/
+	/*
+	 * public List<Aplicacion> getAplicaiconConsume() { return aplicaiconConsume; }
+	 * 
+	 * public void setAplicaiconConsume(List<Aplicacion> aplicaiconConsume) {
+	 * this.aplicaiconConsume = aplicaiconConsume; }
+	 */
 
 }

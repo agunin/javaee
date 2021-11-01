@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/layout.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{usuarioController.usuario.id}" />
+		<f:viewAction action="#{usuarioController.findUsuarioById}" />
+	</f:metadata>
+
+	<ui:define name="title">#{labels['usuario.alta.title']}</ui:define>
+
+	<ui:define name="body">
+
+		<div class="card">
+		<p:outputPanel>
+			<h:form id="form" prependId="false">
+
+				<div class="p-field p-grid" jsf:id="divId" jsf:rendered="#{usuarioController.isManaged(usuarioController.usuario.id)}">
+					<h:outputLabel value="#{labels['usuario.id']}:*"
+						for="inputId" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:inputText id="inputId"
+							value="#{usuarioController.usuario.id}" required="true"
+							size="40" disabled="#{usuarioController.isManaged(usuarioController.usuario.id)}">
+						</p:inputText>
+					</div>
+				</div>
+					
+				<div class="p-field p-grid" jsf:id="divNombre">
+					<h:outputLabel value="#{labels['usuario.nombre']}:*"
+						for="inputNombre" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:inputText id="inputNombre"
+							value="#{usuarioController.usuario.nombre}" required="true"
+							size="40">
+							<p:ajax event="blur" process="@this" update="msgNombre" />
+						</p:inputText>
+						<h:message id="msgNombre" for="inputNombre" errorClass="err"
+							warnClass="warn" infoClass="info" />
+					</div>
+				</div>
+				
+				<div class="p-field p-grid" jsf:id="divApellido">
+					<h:outputLabel value="#{labels['usuario.apellido']}:*"
+						for="inputApellido" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:inputText id="inputApellido"
+							value="#{usuarioController.usuario.apellido}" required="true"
+							size="40">
+							<p:ajax event="blur" process="@this" update="msgApellido" />
+						</p:inputText>
+						<h:message id="msgApellido" for="inputApellido" errorClass="err"
+							warnClass="warn" infoClass="info" />
+					</div>
+				</div>
+
+				<div class="p-field p-grid" jsf:id="divDocumentoIdentidad">
+					<h:outputLabel value="#{labels['usuario.documentoIdentidad']}:*"
+						for="inputDocumento" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:inputText id="inputDocumentoIdentidad"
+							value="#{usuarioController.usuario.documentoIdentidad}" required="true"
+							size="40">
+							<p:ajax event="blur" process="@this" update="msgDocumento" />
+						</p:inputText>
+						<h:message id="msgDocumento" for="inputDocumentoIdentidad"
+							errorClass="err" warnClass="warn" infoClass="info" />
+					</div>
+				</div>
+
+				<div class="p-field p-grid" jsf:id="divEmail">
+					<h:outputLabel value="#{labels['usuario.email']}:*"
+						for="inputEmail" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:inputText id="inputEmail"
+							value="#{usuarioController.usuario.email}" required="true"
+							size="40">
+							<p:ajax event="blur" process="@this" update="msgEmail" />
+						</p:inputText>
+						<h:message id="msgEmail" for="inputEmail" errorClass="err"
+							warnClass="warn" infoClass="info" />
+					</div>
+				</div>
+				
+				
+				<br />
+
+				<p:commandButton action="#{usuarioController.crearUsuario}"
+					value="Confirmar">
+					<f:ajax event="click" execute="@form" render="@form" />
+				</p:commandButton>
+
+				<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
+
+				<h:link outcome="usuarios.xhtml" value="volver" />
+			</h:form>
+			</p:outputPanel>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
+
