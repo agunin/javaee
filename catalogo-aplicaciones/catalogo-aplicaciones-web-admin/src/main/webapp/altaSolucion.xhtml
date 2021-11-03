@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/layout.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{solucionController.solucion.id}" />
+		<f:viewAction action="#{solucionController.findSolucionById}" />
+	</f:metadata>
+
+	<ui:define name="title">#{labels['solucion.alta.title']}</ui:define>
+
+	<ui:define name="body">
+
+		<div class="card">
+		<p:outputPanel>
+			<h:form id="form" prependId="false">
+
+				<div class="p-field p-grid" jsf:id="divId" jsf:rendered="#{solucionController.isManaged(solucionController.solucion.id)}">
+					<h:outputLabel value="#{labels['solucion.id']}:*"
+						for="inputId" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:inputText id="inputId"
+							value="#{solucionController.solucion.id}" required="true"
+							size="40" disabled="#{usuarioController.isManaged(solucionController.solucion.id)}">
+						</p:inputText>
+					</div>
+				</div>
+					
+				<div class="p-field p-grid" jsf:id="divIdentificador">
+					<h:outputLabel value="#{labels['solucion.identificador']}:*"
+						for="inputIdentificador" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:inputText id="inputIdentificador"
+							value="#{solucionController.solucion.identificador}" required="true"
+							size="40">
+							<p:ajax event="blur" process="@this" update="msgIdentificador" />
+						</p:inputText>
+						<h:message id="msgIdentificador" for="inputIdentificador" errorClass="err"
+							warnClass="warn" infoClass="info" />
+					</div>
+				</div>
+				
+				<div class="p-field p-grid" jsf:id="divDescripcion">
+					<h:outputLabel value="#{labels['solucion.descripcion']}:*"
+						for="inputDescripcion" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:inputText id="inputDescripcion"
+							value="#{solucionController.solucion.descripcion}" required="true"
+							size="40">
+							<p:ajax event="blur" process="@this" update="msgDescripcion" />
+						</p:inputText>
+						<h:message id="msgDescripcion" for="inputDescripcion" errorClass="err"
+							warnClass="warn" infoClass="info" />
+					</div>
+				</div>
+				
+				
+				<br />
+
+				<p:commandButton action="#{solucionController.crearSolucion}"
+					value="Confirmar">
+					<f:ajax event="click" execute="@form" render="@form" />
+				</p:commandButton>
+
+				<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
+
+				<h:link outcome="soluciones.xhtml" value="volver" />
+			</h:form>
+			</p:outputPanel>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
+

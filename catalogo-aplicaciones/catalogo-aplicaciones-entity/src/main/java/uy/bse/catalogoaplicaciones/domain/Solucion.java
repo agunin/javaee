@@ -24,7 +24,7 @@ public class Solucion extends BaseEntity<Long> {
 
 	@Id
 	@Column(name = "idSolucion")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
@@ -32,7 +32,7 @@ public class Solucion extends BaseEntity<Long> {
 
 	@Lob
 	@NotNull
-	@Size(min = 60)
+	@Size(min = 20)
 	@Basic(fetch = FetchType.LAZY)
 	private String descripcion;
 	

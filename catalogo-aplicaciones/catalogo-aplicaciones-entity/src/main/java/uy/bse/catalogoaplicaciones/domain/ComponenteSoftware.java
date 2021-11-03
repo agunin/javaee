@@ -17,13 +17,13 @@ import javax.validation.constraints.Size;
 
 @Entity
 //@Table(name = "Componente_Software") por defecto le pone de nombre ComponenteSoftware
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class ComponenteSoftware extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 

@@ -46,9 +46,11 @@ public class Aplicacion extends ComponenteSoftware {
 		super();
 	}
 
-	public Aplicacion(AplicacionLenguaje aplicacionLenguaje, List<Interface> proveeInterface,
+	public Aplicacion(String identificador,String descripcion,AplicacionLenguaje aplicacionLenguaje, List<Interface> proveeInterface,
 			List<Interface> consumeInterface) {
 		super();
+		this.setIdentificador(identificador);
+		this.setDescripcion(descripcion);
 		this.aplicacionLenguaje = aplicacionLenguaje;
 		this.proveeInterface = proveeInterface;
 		this.consumeInterface = consumeInterface;
