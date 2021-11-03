@@ -14,7 +14,7 @@ public class Usuario extends BaseEntity<Long> {
 
 	@Id
 	@Column(name = "idUsuario")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotNull
