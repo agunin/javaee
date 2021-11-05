@@ -11,17 +11,22 @@
         
         <!--  entities del proyecto -->
         <class>uy.bse.catalogoaplicaciones.domain.Usuario</class>
+        <class>uy.bse.catalogoaplicaciones.domain.Rol</class>
+        <class>uy.bse.catalogoaplicaciones.domain.Solucion</class>
+        <class>uy.bse.catalogoaplicaciones.domain.ComponenteSoftware</class>
+        <class>uy.bse.catalogoaplicaciones.domain.Aplicacion</class>
+        <class>uy.bse.catalogoaplicaciones.domain.Interface</class>
 		
 		<shared-cache-mode>NONE</shared-cache-mode>
                
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/> 
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/catalogo_aplicaciones_db;create=true;territory=en_US" />
-			<property name="javax.persistence.jdbc.user" value="APP" />
+     	    <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/catalogo_aplicaciones_db;create=true;territory=en_US" />
+ 			<property name="javax.persistence.jdbc.user" value="APP" />
 			<property name="javax.persistence.jdbc.password" value="APP" />
 			
-			<property name="javax.persistence.sql-load-script-source" value="insert.sql"/>
+<!-- 			<property name="javax.persistence.sql-load-script-source" value="insert.sql"/> -->
 			
 			<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
 			<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>

@@ -14,7 +14,7 @@ public class Rol extends BaseEntity<Long> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "idAmbiente")
+	@Column(name = "idRol")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
@@ -22,10 +22,24 @@ public class Rol extends BaseEntity<Long> {
 	@Enumerated(value = EnumType.STRING)
 	@NotNull
 	private RolTipo rolTipo;
+	
+	
+	//ManytoOne a Usuario
+	
+	//ManytoOne a ComponenteSoftware
 
 	public Rol() {
 		super();
 	}
+	
+	
+
+	public Rol(RolTipo rolTipo) {
+		super();
+		this.rolTipo = rolTipo;
+	}
+
+
 
 	public Long getId() {
 		return id;

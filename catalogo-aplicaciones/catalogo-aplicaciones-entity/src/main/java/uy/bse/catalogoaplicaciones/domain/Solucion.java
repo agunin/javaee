@@ -32,7 +32,7 @@ public class Solucion extends BaseEntity<Long> {
 
 	@Lob
 	@NotNull
-	@Size(min = 20)
+	@Size(min = 2)
 	@Basic(fetch = FetchType.LAZY)
 	private String descripcion;
 	
@@ -43,6 +43,17 @@ public class Solucion extends BaseEntity<Long> {
 	public Solucion() {
 		super();
 	}
+	
+	
+
+	public Solucion(String identificador, String descripcion) {
+		super();
+		this.identificador = identificador;
+		this.descripcion = descripcion;
+		
+	}
+
+
 
 	public Long getId() {
 		return id;

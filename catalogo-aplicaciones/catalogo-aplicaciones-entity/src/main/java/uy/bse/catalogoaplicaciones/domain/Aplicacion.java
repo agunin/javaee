@@ -1,5 +1,6 @@
 package uy.bse.catalogoaplicaciones.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -18,49 +20,30 @@ public class Aplicacion extends ComponenteSoftware {
 
 	private static final long serialVersionUID = 1L;
 
-	/*
-	 * @Id
-	 * 
-	 * @Column(name = "idAplicacion")
-	 * 
-	 * @GeneratedValue(strategy = GenerationType.AUTO) private Long id;
-	 */
-
 	@Column(name = "aplicacionLenguaje", nullable = false)
 	@Enumerated(value = EnumType.STRING)
 	@NotNull
 	private AplicacionLenguaje aplicacionLenguaje;
-
-	//@OneToMany(mappedBy = "aplicaiconProvee", cascade = CascadeType.ALL, orphanRemoval = true)
+	
 	@OneToMany // 1 - N (Aplicacion --> Interface) - provee
-	private List<Interface> proveeInterface;
-
-	/*@OneToMany(mappedBy = "idInterface", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Interface> consumeInterface;*/
+	@JoinTable(name = "Aplicacione_PInterfaces")
+	private List<Interface> proveeInterface = new ArrayList<Interface>();
 	
 	@OneToMany // 1 - N (Aplicacion --> Interface) - consume
-	private List<Interface> consumeInterface;
+	@JoinTable(name = "Aplicacione_CInterfaces")
+	private List<Interface> consumeInterface = new ArrayList<Interface>();;
 	
 	
 	public Aplicacion() {
 		super();
 	}
 
-	public Aplicacion(String identificador,String descripcion,AplicacionLenguaje aplicacionLenguaje, List<Interface> proveeInterface,
-			List<Interface> consumeInterface) {
+	public Aplicacion(String identificador,String descripcion,AplicacionLenguaje aplicacionLenguaje) {
 		super();
 		this.setIdentificador(identificador);
 		this.setDescripcion(descripcion);
-		this.aplicacionLenguaje = aplicacionLenguaje;
-		this.proveeInterface = proveeInterface;
-		this.consumeInterface = consumeInterface;
+		this.setAplicacionLenguaje(aplicacionLenguaje);	
 	}
-
-	/*
-	 * public Long getId() { return id; }
-	 * 
-	 * public void setId(Long id) { this.id = id; }
-	 */
 	
 	public AplicacionLenguaje getAplicacionLenguaje() {
 		return aplicacionLenguaje;
@@ -74,16 +57,16 @@ public class Aplicacion extends ComponenteSoftware {
 		return proveeInterface;
 	}
 
-	public void setProveeInterface(List<Interface> proveeInterface) {
-		this.proveeInterface = proveeInterface;
+	public void addProveeInterface(Interface p) {
+		this.proveeInterface.add(p);
 	}
 	
 	public List<Interface> getConsumeInterface() {
 		return consumeInterface;
 	}
 
-	public void setConsumeInterface(List<Interface> consumeInterface) {
-		this.consumeInterface = consumeInterface;
+	public void addConsumeInterface(Interface c) {
+		this.consumeInterface.add(c);
 	}
 
 }

@@ -35,8 +35,9 @@ public class Interface extends ComponenteSoftware {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Interface(InterfaceTipo tipoInterface) {
-		super();
+	public Interface(String identificador,String descripcion,InterfaceTipo tipoInterface) {
+		this.setIdentificador(identificador);
+		this.setDescripcion(descripcion);
 		this.tipoInterface = tipoInterface;
 	}
 

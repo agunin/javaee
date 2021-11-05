@@ -32,7 +32,7 @@ public abstract class ComponenteSoftware extends BaseEntity<Long> {
 
 	@Lob
 	@NotNull
-	@Size(min = 60)
+	@Size(min = 4)
 	@Basic(fetch = FetchType.LAZY)
 	private String descripcion;
 
