@@ -86,5 +86,10 @@ public class Solucion extends BaseEntity<Long> {
 	public void setComponentesSoftware(List<ComponenteSoftware> componentesSoftware) {
 		this.componentesSoftware = componentesSoftware;
 	}
+	
+	
+	public void addComponentesSoftware(ComponenteSoftware componentesSoftware) {
+		this.componentesSoftware.add(componentesSoftware);
+	}
 
 }
