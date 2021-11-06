@@ -103,16 +103,38 @@
 		            <p:tab id="interfaz" title="Interfaces">
 		                <p:panel header="Interfaz Detalles">
 		                    <p:messages/>
-		                    <!-- <h:panelGrid columns="2" columnClasses="label, value">
-		                        <h:outputText value="Email: *"/>
-		                        <p:inputText value="#{userWizard.user.email}" required="true" label="Email"/>
-		
-		                        <h:outputText value="Phone: "/>
-		                        <p:inputText value="#{userWizard.user.phone}"/>
-		
-		                        <h:outputText value="Additional Info: "/>
-		                        <p:inputText value="#{userWizard.user.info}"/>
-		                    </h:panelGrid> -->
+		                    
+		           
+					        <p:tree value="#{treeSelectionView.root3}" var="doc"
+					                selectionMode="checkbox"
+					                selection="#{treeSelectionView.selectedNodes2}">
+					            <p:treeNode expandedIcon="pi pi-folder-open" collapsedIcon="pi pi-folder">
+					                <h:outputText value="#{doc.identificador}"/>
+					            </p:treeNode>
+					            <p:treeNode type="app" icon="pi pi-save">
+					                <h:outputText value="#{doc.id}"/>
+					            </p:treeNode>
+					            <p:treeNode type="document" icon="pi pi-file">
+					                <h:outputText value="#{doc.identificador}"/>
+					            </p:treeNode>
+					            <p:treeNode type="excel" icon="pi pi-file-excel">
+					                <h:outputText value="#{doc.id}"/>
+					            </p:treeNode>
+					            <p:treeNode type="travel" icon="pi pi-file-pdf">
+					                <h:outputText value="#{doc.id}"/>
+					            </p:treeNode>
+					            <p:treeNode type="picture" icon="pi pi-image">
+					                <h:outputText value="#{doc.id}"/>
+					            </p:treeNode>
+					            <p:treeNode type="video" icon="pi pi-video">
+					                <h:outputText value="#{doc.id}"/>
+					            </p:treeNode>
+					        </p:tree>
+						
+						     <!--    <p:commandButton value="Display" update="msgs" icon="pi pi-clone" styleClass="p-mt-3"
+						                         action="#{treeSelectionView.displaySelectedMultiple(treeSelectionView.selectedNodes2)}"/> -->
+
+		                    
 		                </p:panel>
 		            </p:tab>
 		

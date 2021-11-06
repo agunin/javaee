@@ -3,11 +3,13 @@ package uy.bse.catalogoaplicaciones.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,11 +27,11 @@ public class Aplicacion extends ComponenteSoftware {
 	@NotNull
 	private AplicacionLenguaje aplicacionLenguaje;
 	
-	@OneToMany // 1 - N (Aplicacion --> Interface) - provee
+	@OneToMany(fetch = FetchType.EAGER) // 1 - N (Aplicacion --> Interface) - provee
 	@JoinTable(name = "Aplicacione_PInterfaces")
 	private List<Interface> proveeInterface = new ArrayList<Interface>();
 	
-	@OneToMany // 1 - N (Aplicacion --> Interface) - consume
+	@OneToMany  // 1 - N (Aplicacion --> Interface) - consume
 	@JoinTable(name = "Aplicacione_CInterfaces")
 	private List<Interface> consumeInterface = new ArrayList<Interface>();;
 	

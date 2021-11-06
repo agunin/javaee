@@ -10,8 +10,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.event.FlowEvent;
+import org.primefaces.model.TreeNode;
 
 import uy.bse.catalogoaplicaciones.domain.Aplicacion;
+import uy.bse.catalogoaplicaciones.domain.Interface;
 import uy.bse.catalogoaplicaciones.domain.Solucion;
 
 @Named
@@ -30,6 +32,10 @@ public class SolucionWizard implements Serializable {
 	// Referenciar al Aplicacion Controller
 	@Inject
 	AplicacionesWizardController aplicacionesWizardController;
+	
+	//Referenciar al Aplicacion Controller
+	@Inject
+	InterfacesWizardController interfacesWizardController;
 
 	// private Solucion solucion = new Solucion();
 
@@ -51,6 +57,13 @@ public class SolucionWizard implements Serializable {
 
 		for (Aplicacion aplicacion : applicacionesSeleccionadas) {
 			solucionController.getSolucion().getComponentesSoftware().add(aplicacion);
+		}
+		
+		TreeNode[] interfacesSeleccionadas = interfacesWizardController.getSelectedNodes2();
+
+		for (TreeNode i : interfacesSeleccionadas) {
+			Interface inter = (Interface)i.getData();
+			solucionController.getSolucion().getComponentesSoftware().add(inter);
 		}
 
 		solucionController.crearSolucion();
