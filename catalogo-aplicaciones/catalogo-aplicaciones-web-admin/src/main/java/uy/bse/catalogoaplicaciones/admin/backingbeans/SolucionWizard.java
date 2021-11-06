@@ -48,6 +48,7 @@ public class SolucionWizard implements Serializable {
 
     public void save() {
     	
+    	
  
     	//Persisitir la entidad Solucion
     	

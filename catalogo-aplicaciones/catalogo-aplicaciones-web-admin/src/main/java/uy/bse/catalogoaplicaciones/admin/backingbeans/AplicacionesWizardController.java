@@ -36,6 +36,7 @@ public class AplicacionesWizardController implements Serializable {
     @PostConstruct
     public void init() {
       
+    	
         aplicaciones = service.getAplicaciones();
     }
 

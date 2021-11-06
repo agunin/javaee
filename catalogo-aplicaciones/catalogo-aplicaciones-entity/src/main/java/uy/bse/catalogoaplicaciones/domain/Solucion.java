@@ -1,5 +1,6 @@
 package uy.bse.catalogoaplicaciones.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Basic;
@@ -42,6 +43,8 @@ public class Solucion extends BaseEntity<Long> {
 
 	public Solucion() {
 		super();
+		componentesSoftware = new ArrayList<ComponenteSoftware>();
+		
 	}
 	
 	
