@@ -1,6 +1,8 @@
 package uy.bse.catalogoaplicaciones.admin.backingbeans;
 
 import java.io.Serializable;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -11,6 +13,7 @@ import javax.inject.Named;
 
 import org.primefaces.event.FlowEvent;
 
+import uy.bse.catalogoaplicaciones.domain.Aplicacion;
 import uy.bse.catalogoaplicaciones.domain.Solucion;
 
 @Named
@@ -29,7 +32,7 @@ public class SolucionWizard implements Serializable {
 	
 	//Referenciar al Aplicacion Controller
 	@Inject
-	AplicacionController aplicacionController;
+	AplicacionesWizardController aplicacionesWizardController;
 	
 	//private Solucion solucion = new Solucion();
 
@@ -45,13 +48,16 @@ public class SolucionWizard implements Serializable {
 
     public void save() {
     	
-    	
-		/*
-		 * usuarioService.update(usuario); return "usuarios.xhtml?faces-redirect=true";
-		 */
+ 
     	//Persisitir la entidad Solucion
-    	solucionController.crearSolucion();
     	
+    	List<Aplicacion> applicacionesSeleccionadas = aplicacionesWizardController.getSelectedAplicaciones();
+    	
+    	for (Aplicacion aplicacion : applicacionesSeleccionadas) {
+    		solucionController.getSolucion().getComponentesSoftware().add(aplicacion);
+		}
+    	
+    	solucionController.crearSolucion();
     	
     	
         FacesMessage msg = new FacesMessage("Successful", "Welcome :" + solucionController.getSolucion().getIdentificador());

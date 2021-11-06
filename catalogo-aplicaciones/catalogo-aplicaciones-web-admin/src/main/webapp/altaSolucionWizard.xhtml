@@ -71,14 +71,13 @@
 		            <p:tab id="aplicaciones" title="Aplicaciones">
 		                <p:panel header="Aplicaciones Detalles">
 		                    <p:messages/>
-		                   
-		                   <h:form id="form">
+
 							    <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
 							
 							    <div class="card">
-							        <p:dataTable id="checkboxDT" var="aplicacion" value="#{aplicacionController.aplicaciones}"
-							                     selection="#{aplicacionController.selectedAplicaciones}" rowKey="#{aplicacion.id}"
-							                     style="margin-bottom:0" paginator="true" rows="5" selectionPageOnly="false">
+							        <p:dataTable id="checkboxDT" var="aplicacion" value="#{aplicacionesWizardController.aplicaciones}"
+							                     selection="#{aplicacionesWizardController.selectedAplicaciones}" rowKey="#{aplicacion.id}"
+							                     style="margin-bottom:0" paginator="true" rows="8" selectionPageOnly="false">
 							            <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
 							            <p:column headerText="Id">
 							                <h:outputText value="#{aplicacion.identificador}" />
@@ -96,11 +95,7 @@
 							        </p:dataTable>
 							    </div>
 							
-							</h:form>
-		                   
-		                   
-		                   
-		                   
+            
 		                </p:panel>
 		            </p:tab>
 		

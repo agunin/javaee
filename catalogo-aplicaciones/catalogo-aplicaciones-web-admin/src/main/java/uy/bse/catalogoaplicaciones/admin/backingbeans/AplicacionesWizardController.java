@@ -16,9 +16,9 @@ import org.primefaces.event.UnselectEvent;
 import uy.bse.catalogoaplicaciones.domain.Aplicacion;
 import uy.bse.catalogoaplicaciones.ejbs.AplicacionService;
 
-@Named("aplicacionController")
+@Named("aplicacionesWizardController")
 @ViewScoped
-public class AplicacionController implements Serializable {
+public class AplicacionesWizardController implements Serializable {
 
     /**
 	 * 
@@ -26,8 +26,7 @@ public class AplicacionController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private List<Aplicacion> aplicaciones;
-    
-	private Aplicacion selectedAplicacion;
+   
     
 	private List<Aplicacion> selectedAplicaciones;
 
@@ -40,21 +39,12 @@ public class AplicacionController implements Serializable {
         aplicaciones = service.getAplicaciones();
     }
 
- 
     public List<Aplicacion> getAplicaciones() {
         return aplicaciones;
     }
 
     public void setService(AplicacionService service) {
         this.service = service;
-    }
-
-    public Aplicacion getSelectedAplicacion() {
-        return selectedAplicacion;
-    }
-
-    public void setSelectedAplicacion(Aplicacion selectedplicacion) {
-        this.selectedAplicacion = selectedplicacion;
     }
 
     public List<Aplicacion> getSelectedAplicaciones() {
@@ -65,13 +55,5 @@ public class AplicacionController implements Serializable {
         this.selectedAplicaciones = selectedplicaciones;
     }
 
-    public void onRowSelect(SelectEvent<Aplicacion> event) {
-        FacesMessage msg = new FacesMessage("Aplicacion Selected", String.valueOf(event.getObject().getId()));
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-
-    public void onRowUnselect(UnselectEvent<Aplicacion> event) {
-        FacesMessage msg = new FacesMessage("Aplicacion Unselected", String.valueOf(event.getObject().getId()));
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
+	
 }
