@@ -67,3 +67,4 @@ public class Ambiente extends BaseEntity<Long> {
 	}
 
 }
+

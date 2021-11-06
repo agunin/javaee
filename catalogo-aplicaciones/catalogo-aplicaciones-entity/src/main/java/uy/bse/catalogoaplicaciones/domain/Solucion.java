@@ -31,6 +31,7 @@ public class Solucion extends BaseEntity<Long> {
 	@NotNull
 	private String identificador;
 
+	
 	@Lob
 	@NotNull
 	@Size(min = 2)
@@ -96,3 +97,4 @@ public class Solucion extends BaseEntity<Long> {
 	}
 
 }
+

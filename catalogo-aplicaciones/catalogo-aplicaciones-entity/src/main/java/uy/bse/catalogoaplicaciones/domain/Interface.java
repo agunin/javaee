@@ -30,6 +30,7 @@ public class Interface extends ComponenteSoftware {
 	 * @GeneratedValue(strategy = GenerationType.AUTO) private Long id;
 	 */
 
+	
 	public Interface() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -81,3 +82,4 @@ public class Interface extends ComponenteSoftware {
 	 */
 
 }
+

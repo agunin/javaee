@@ -83,3 +83,4 @@ public class Usuario extends BaseEntity<Long> {
 		this.email = email;
 	}
 }
+

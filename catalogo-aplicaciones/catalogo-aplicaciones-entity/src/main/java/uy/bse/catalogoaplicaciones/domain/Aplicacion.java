@@ -70,3 +70,4 @@ public class Aplicacion extends ComponenteSoftware {
 	}
 
 }
+

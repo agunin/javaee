@@ -27,6 +27,7 @@ public abstract class ComponenteSoftware extends BaseEntity<Long> {
 	private Long id;
 
 
+	
 	@NotNull
 	private String identificador;
 
@@ -61,3 +62,4 @@ public abstract class ComponenteSoftware extends BaseEntity<Long> {
 	}
 
 }
+
