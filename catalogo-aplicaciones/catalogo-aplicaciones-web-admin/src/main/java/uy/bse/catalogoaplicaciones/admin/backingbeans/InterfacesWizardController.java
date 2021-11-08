@@ -45,34 +45,31 @@ public class InterfacesWizardController implements Serializable {
     @PostConstruct
     public void init() {
     	
-    	
-root3 = new CheckboxTreeNode(new Aplicacion("id", "dsc", AplicacionLenguaje.APEX), null);
-
-    	
-    	
-    	List<Aplicacion> applicacionesSeleccionadas = aplicacionesWizardController.getAplicaciones();
-    	
-    	
-        
-    	for (Aplicacion a : applicacionesSeleccionadas) {
-    		TreeNode aNode = new CheckboxTreeNode(a, root3);
-    	     
-    		
-    		for (Interface i : a.getProveeInterface()) {
-    			
-                new CheckboxTreeNode("document", i, aNode);
-
-			}
-            
-		}
-        
-    	
-        
-    		
-    	
     }
 
-
+    public void initOnDemand() {
+	    root3 = new CheckboxTreeNode(new Aplicacion("id", "dsc", AplicacionLenguaje.APEX), null);
+	
+		
+		
+		List<Aplicacion> applicacionesSeleccionadas = aplicacionesWizardController.getSelectedAplicaciones();
+		
+		
+	    
+		for (Aplicacion a : applicacionesSeleccionadas) {
+			TreeNode aNode = new CheckboxTreeNode(a, root3);
+		     
+			
+			for (Interface i : a.getProveeInterface()) {
+				
+	            new CheckboxTreeNode("document", i, aNode);
+	
+			}
+	        
+		}
+    }
+    
+    
 
     public TreeNode getRoot3() {
 

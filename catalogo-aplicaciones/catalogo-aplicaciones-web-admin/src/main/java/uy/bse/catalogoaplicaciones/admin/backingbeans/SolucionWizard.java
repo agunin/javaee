@@ -1,6 +1,7 @@
 package uy.bse.catalogoaplicaciones.admin.backingbeans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -13,6 +14,7 @@ import org.primefaces.event.FlowEvent;
 import org.primefaces.model.TreeNode;
 
 import uy.bse.catalogoaplicaciones.domain.Aplicacion;
+import uy.bse.catalogoaplicaciones.domain.ComponenteSoftware;
 import uy.bse.catalogoaplicaciones.domain.Interface;
 import uy.bse.catalogoaplicaciones.domain.Solucion;
 
@@ -25,15 +27,15 @@ public class SolucionWizard implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	// Referenciar al Solucion Controller
+	//Referenciar al SolucionController
 	@Inject
 	SolucionController solucionController;
 
-	// Referenciar al Aplicacion Controller
+	//Referenciar al AplicacionController
 	@Inject
 	AplicacionesWizardController aplicacionesWizardController;
 	
-	//Referenciar al Aplicacion Controller
+	//Referenciar al InterfaceController
 	@Inject
 	InterfacesWizardController interfacesWizardController;
 
@@ -49,28 +51,39 @@ public class SolucionWizard implements Serializable {
 		this.solucionController.setSolucion(solucion);
 	}
 
-	public void save() {
+	public String save() {
 
-		// Persisitir la entidad Solucion
 
+		List<ComponenteSoftware> componentesSoftware = new ArrayList<ComponenteSoftware>();
+		
+		/******** Aplicaciones Seleccionadas *********/
 		List<Aplicacion> applicacionesSeleccionadas = aplicacionesWizardController.getSelectedAplicaciones();
-
 		for (Aplicacion aplicacion : applicacionesSeleccionadas) {
-			solucionController.getSolucion().getComponentesSoftware().add(aplicacion);
+			componentesSoftware.add(aplicacion);
 		}
 		
+		/******** Interfaces Seleccionadas *********/
 		TreeNode[] interfacesSeleccionadas = interfacesWizardController.getSelectedNodes2();
-
-		for (TreeNode i : interfacesSeleccionadas) {
-			Interface inter = (Interface)i.getData();
-			solucionController.getSolucion().getComponentesSoftware().add(inter);
+		for (TreeNode t : interfacesSeleccionadas) {
+			
+			if (t.getData() instanceof Interface) {
+			
+			Interface inter = (Interface)t.getData();
+				componentesSoftware.add(inter);
+			}
 		}
-
+		
+		/******** ComponenteSoftware en Solucion *********/
+		solucionController.getSolucion().setComponentesSoftware(componentesSoftware);
 		solucionController.crearSolucion();
+		
 
-		FacesMessage msg = new FacesMessage("Successful",
-				"Welcome :" + solucionController.getSolucion().getIdentificador());
+		
+		FacesMessage msg = new FacesMessage("Exito",
+				"Solucion creada :" + solucionController.getSolucion().getIdentificador());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+		
+		return "soluciones.xhtml?faces-redirect=true";
 	}
 
 	public boolean isSkip() {
@@ -84,8 +97,12 @@ public class SolucionWizard implements Serializable {
 	public String onFlowProcess(FlowEvent event) {
 		if (skip) {
 			skip = false; // reset in case user goes back
-			return "confirm";
+			return "confirmacion";
 		} else {
+			String tabName = event.getNewStep().toString();
+			if(tabName.compareTo("interfaces") == 0) {
+				interfacesWizardController.initOnDemand();
+			}
 			return event.getNewStep();
 		}
 	}
