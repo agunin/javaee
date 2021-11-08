@@ -11,15 +11,13 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.model.CheckboxTreeNode;
-import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
-import uy.bse.catalogoaplicaciones.admin.model.Document;
+
 import uy.bse.catalogoaplicaciones.domain.Aplicacion;
 import uy.bse.catalogoaplicaciones.domain.AplicacionLenguaje;
 import uy.bse.catalogoaplicaciones.domain.Interface;
-import uy.bse.catalogoaplicaciones.domain.InterfaceTipo;
-import uy.bse.catalogoaplicaciones.ejbs.InterfaceService;
+
 
 @Named("treeSelectionView")
 @ViewScoped
@@ -57,14 +55,22 @@ public class InterfacesWizardController implements Serializable {
 		
 	    
 		for (Aplicacion a : applicacionesSeleccionadas) {
-			TreeNode aNode = new CheckboxTreeNode(a, root3);
+			TreeNode aNode = new CheckboxTreeNode("app",a, root3);
 		     
 			
 			for (Interface i : a.getProveeInterface()) {
 				
-	            new CheckboxTreeNode("document", i, aNode);
+	            new CheckboxTreeNode("pinterface", i, aNode);
 	
 			}
+			
+			/*
+			 * for (Interface i : a.getConsumeInterface()) {
+			 * 
+			 * new DefaultTreeNode("cinterface", i, aNode);
+			 * 
+			 * }
+			 */
 	        
 		}
     }
