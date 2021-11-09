@@ -3,7 +3,9 @@ package uy.bse.catalogoaplicaciones.admin.backingbeans;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -27,23 +29,49 @@ public class SolucionWizard implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	//Referenciar al SolucionController
 	@Inject
 	SolucionController solucionController;
 
-	//Referenciar al AplicacionController
 	@Inject
 	AplicacionesWizardController aplicacionesWizardController;
 	
-	//Referenciar al InterfaceController
 	@Inject
 	InterfacesWizardController interfacesWizardController;
 
-	// private Solucion solucion = new Solucion();
-
 	private boolean skip;
+	
+	
+	@PostConstruct
+    public void init() {
+		if (solucionController.getSolucion().getId() != null) {
+			Solucion s = solucionController.getSolucion();
+			
+			List<Aplicacion> aplicaciones = new ArrayList<Aplicacion>();
+			List<Interface> interfaces = new ArrayList<Interface>();
+			
+			for (ComponenteSoftware c : s.getComponentesSoftware()) {
+				
+				if (c instanceof Interface) {  
+				    Interface i = (Interface)c; 
+				    interfaces.add(i); 
+				}
+				 
+				if (c instanceof Aplicacion) {
+					Aplicacion a = (Aplicacion)c;
+					aplicaciones.add(a);
+				}
+				
+			}
+			
+			aplicacionesWizardController.setSelectedAplicaciones(aplicaciones);
+			interfacesWizardController.setInterfaces(interfaces);
+	
+		}
+    	
+    }
 
 	public Solucion getSolucion() {
+		
 		return solucionController.getSolucion();
 	}
 
@@ -68,7 +96,7 @@ public class SolucionWizard implements Serializable {
 			
 			if (t.getData() instanceof Interface) {
 			
-			Interface inter = (Interface)t.getData();
+				Interface inter = (Interface)t.getData();
 				componentesSoftware.add(inter);
 			}
 		}
@@ -100,9 +128,12 @@ public class SolucionWizard implements Serializable {
 			return "confirmacion";
 		} else {
 			String tabName = event.getNewStep().toString();
-			if(tabName.compareTo("interfaces") == 0) {
+			if(tabName.compareTo("interfaces") == 0 ) {
 				interfacesWizardController.initOnDemand();
 			}
+			
+			
+			
 			return event.getNewStep();
 		}
 	}

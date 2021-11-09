@@ -54,11 +54,13 @@
 		
 		        <p:growl id="growl" sticky="true" showDetail="true"/>
 		
-		        <p:wizard flowListener="#{solucionWizard.onFlowProcess}">
+		        <p:wizard flowListener="#{solucionWizard.onFlowProcess}" nextLabel="Siguiente" backLabel="Anterior">
 		            <p:tab id="solucion" title="Solucion">
 		                <p:panel header="Solucion Detalles">
 		                    <p:messages/>
 		                    <h:panelGrid columns="2" columnClasses="label, value">
+		                    
+		              
 		                        <h:outputText value="Identifiacador: *"/>
 		                        <p:inputText value="#{solucionWizard.solucion.identificador}" required="true" label="Identificador"/>
 		
@@ -78,8 +80,9 @@
 							    <div class="card">
 							        <p:dataTable id="checkboxDT" var="aplicacion" value="#{aplicacionesWizardController.aplicaciones}"
 							                     selection="#{aplicacionesWizardController.selectedAplicaciones}" rowKey="#{aplicacion.id}"
-							                     style="margin-bottom:0" paginator="true" rows="8" selectionPageOnly="false">
+							                     style="margin-bottom:0" paginator="true" rows="10" selectionPageOnly="false">
 							            <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+							           
 							            <p:column headerText="Id">
 							                <h:outputText value="#{aplicacion.identificador}" />
 							            </p:column>
@@ -114,24 +117,13 @@
 					            <p:treeNode type="app" icon="pi pi-desktop">
 					                <h:outputText value="#{doc.identificador}"/>
 					            </p:treeNode>
-<!-- 					            <p:treeNode type="document" icon="pi pi-file">
-					                <h:outputText value="#{doc.identificador}"/>
-					            </p:treeNode> -->
 					            <p:treeNode type="pinterface" icon="pi pi-sign-out">
 					                <h:outputText value="#{doc.identificador}"/>
 					            </p:treeNode>
 					            <p:treeNode type="cinterface" icon="pi pi-sign-out">
 					                <h:outputText value="#{doc.identificador}"/>
 					            </p:treeNode>
-					          <!--   <p:treeNode type="travel" icon="pi pi-file-pdf">
-					                <h:outputText value="#{doc.id}"/>
-					            </p:treeNode>
-					            <p:treeNode type="picture" icon="pi pi-image">
-					                <h:outputText value="#{doc.id}"/>
-					            </p:treeNode>
-					            <p:treeNode type="video" icon="pi pi-video">
-					                <h:outputText value="#{doc.id}"/>
-					            </p:treeNode> -->
+
 					        </p:tree>
 						
 						     <!--    <p:commandButton value="Display" update="msgs" icon="pi pi-clone" styleClass="p-mt-3"
@@ -141,8 +133,8 @@
 		                </p:panel>
 		            </p:tab>
 		
-		            <p:tab id="confirmacion" title="Confirmation">
-		                <p:panel header="Confirmation">
+		            <p:tab id="confirmacion" title="Confirmacion">
+		                <p:panel header="Confirmacion">
 		                    <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
 		                        <h:panelGrid columns="2" columnClasses="label, value">
 		                            <h:outputText value="Identificador: "/>
@@ -174,7 +166,7 @@
 		                        </h:panelGrid>-->
 		                    </h:panelGrid> 
 		
-		                    <p:commandButton value="Submit" action="#{solucionWizard.save}" update="growl" process="@this"/>
+		                    <p:commandButton value="Confirmar" action="#{solucionWizard.save}" update="growl" process="@this"/>
 		                </p:panel>
 		            </p:tab>
 		        </p:wizard>

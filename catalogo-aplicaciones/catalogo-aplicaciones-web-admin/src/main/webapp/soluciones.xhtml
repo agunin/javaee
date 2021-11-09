@@ -37,7 +37,7 @@
 					value="#{solucionController.listaSoluciones}">
 
  					<p:column headerText="">
-						<h:link outcome="altaSolucion.xhtml?id=#{solucion.id}">
+						<h:link outcome="altaSolucionWizard.xhtml?id=#{solucion.id}">
 							<h:graphicImage value="/resources/images/edit.png" height="20px"
 								width="20px" title="Editar" style="border: none" />
 						</h:link>
@@ -53,6 +53,10 @@
         				</p:confirmDialog>
 						
 					</p:column>
+					
+					<!-- <p:column headerText="#{labels['solucion.identificador']}">
+						<h:outputText value="#{solucion.id}" />
+					</p:column> -->
 
 					<p:column headerText="#{labels['solucion.identificador']}">
 						<h:outputText value="#{solucion.identificador}" />

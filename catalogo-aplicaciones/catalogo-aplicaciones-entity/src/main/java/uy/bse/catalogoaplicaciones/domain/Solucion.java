@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,7 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -34,7 +36,7 @@ public class Solucion extends BaseEntity<Long> {
 	@Basic(fetch = FetchType.LAZY)
 	private String descripcion;
 
-	@OneToMany
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL )
 	private List<ComponenteSoftware> componentesSoftware;
 
 	public Solucion() {
@@ -45,6 +47,7 @@ public class Solucion extends BaseEntity<Long> {
 
 	public Solucion(String identificador, String descripcion) {
 		super();
+		componentesSoftware = new ArrayList<ComponenteSoftware>();
 		this.identificador = identificador;
 		this.descripcion = descripcion;
 
