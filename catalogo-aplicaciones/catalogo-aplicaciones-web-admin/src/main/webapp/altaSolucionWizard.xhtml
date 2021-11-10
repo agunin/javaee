@@ -56,23 +56,31 @@
 		
 		        <p:wizard flowListener="#{solucionWizard.onFlowProcess}" nextLabel="Siguiente" backLabel="Anterior">
 		            <p:tab id="solucion" title="Solucion">
-		                <p:panel header="Solucion Detalles">
+		                <p:panel header="Solucion Detalle">
 		                    <p:messages/>
-		                    <h:panelGrid columns="2" columnClasses="label, value">
+		                    <h:panelGrid columns="1" layout="flex" columnClasses="label, value">
 		                    
 		              
 		                        <h:outputText value="Identifiacador: *"/>
-		                        <p:inputText value="#{solucionWizard.solucion.identificador}" required="true" label="Identificador"/>
-		
+		                        <!-- <p:inputText value="#{solucionWizard.solucion.identificador}" required="true" label="Identificador"/> -->
+								<p:inputTextarea value="#{solucionWizard.solucion.identificador}" required="true" label="Identificador" rows="2" cols="30" counter="display1" maxlength="30" counterTemplate="{0} caracteres restantes." autoResize="false"/>
+        						<h:outputText id="display1" class="p-d-block" />
+								
+								
+								
 		                        <h:outputText value="Descripcion: *"/>
-		                        <p:inputText value="#{solucionWizard.solucion.descripcion}" required="true" label="Descripcion"/>
+		                        <!-- <p:inputText value="#{solucionWizard.solucion.descripcion}" required="true" label="Descripcion"/> -->
+		                        
+		                        <p:inputTextarea value="#{solucionWizard.solucion.descripcion}" required="true" label="Descripcion" rows="5" cols="30" counter="display2" maxlength="50" counterTemplate="{0} caracteres restantes." autoResize="false"/>
+        						<h:outputText id="display2" class="p-d-block" />
+		                        
 
 		                    </h:panelGrid>
 		                </p:panel>
 		            </p:tab>
 		
 		            <p:tab id="aplicaciones" title="Aplicaciones">
-		                <p:panel header="Aplicaciones Detalles">
+		                <p:panel header="Aplicaciones que componen la Solucion">
 		                    <p:messages/>
 
 							    <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
@@ -80,10 +88,10 @@
 							    <div class="card">
 							        <p:dataTable id="checkboxDT" var="aplicacion" value="#{aplicacionesWizardController.aplicaciones}"
 							                     selection="#{aplicacionesWizardController.selectedAplicaciones}" rowKey="#{aplicacion.id}"
-							                     style="margin-bottom:0" paginator="true" rows="10" selectionPageOnly="false">
+							                     style="margin-bottom:0" paginator="true" rows="8" selectionPageOnly="false">
 							            <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
 							           
-							            <p:column headerText="Id">
+							            <p:column headerText="Identificador">
 							                <h:outputText value="#{aplicacion.identificador}" />
 							            </p:column>
 							
@@ -104,7 +112,7 @@
 		            </p:tab>
 		
 		            <p:tab id="interfaces" title="Interfaces">
-		                <p:panel header="Interfaz Detalles">
+		                <p:panel header="Interfaces que componen la Solucion">
 		                    <p:messages/>
 		                    
 		           
@@ -126,8 +134,6 @@
 
 					        </p:tree>
 						
-						     <!--    <p:commandButton value="Display" update="msgs" icon="pi pi-clone" styleClass="p-mt-3"
-						                         action="#{treeSelectionView.displaySelectedMultiple(treeSelectionView.selectedNodes2)}"/> -->
 
 		                    
 		                </p:panel>
