@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf" >
+      
+	<ui:composition template="templates/layout.xhtml">
+		<ui:define name = "title">
+			Catálogo de Aplicaciones
+		</ui:define>
+		<ui:define name="body">
+			<br />
+			<br />
+			<br />
+			<br />
+	
+			<h:form id="form"  prependId="false">
+				<div class="card">
+			        <p:panel id="panel" header="Opciones de búsqueda" styleClass="p-mb-3">
+			
+			            <table>
+			            	<tr>
+			            		<td>	
+				            		<h:outputLabel for="componente" value="Componente: "/>
+				                </td>
+				                <td>
+					                <p:selectOneMenu id="componente" value="#{searchViewController.componente}" label="Componente" style="width: 14rem">
+					                    <f:selectItem itemLabel="Todos los componentes" itemValue="0" noSelectionOption="true"/>
+					                    <f:selectItem itemLabel="Aplicación" itemValue="1"/>
+					                    <f:selectItem itemLabel="Interface" itemValue="2"/>
+					                    <f:selectItem itemLabel="Solución" itemValue="3"/>
+					                </p:selectOneMenu>
+				                </td>
+				                <td>
+			                	</td>
+			            	</tr>
+			            	<tr>
+			            		<td>
+			                		<h:outputLabel for="palabraClave" value="Palabra clave: *"/>
+			                	</td>	
+			                	<td>
+					                <p:inputText id="palabraClave" value="#{searchViewController.palabraClave}" required="true" label="Palabra clave" style="width: 14rem">
+					                    <f:validateLength minimum="2"/>
+					                </p:inputText>
+					            </td>
+					            <td>
+				                	<p:message for="palabraClave"/>
+				                </td>
+			                </tr>
+			            </table>
+			        </p:panel>
+			
+					<p:commandButton action="#{searchViewController.buscar}" value="Buscar">
+						<f:ajax event="click" execute="@form" render="@form" />
+					</p:commandButton>
+						
+				</div>
+			
+				
+				<br/>
+				
+				
+			        <div>
+				        <p:growl id="messages" showDetail="true"/>
+				
+
+
+                     
+                     <p:dataTable id="listaComponentes" var="product" value="#{searchViewController.products}" rows="10"
+                     paginator="true"
+                     paginatorPosition="bottom"
+                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+			                     
+				            <p:column headerText="Tipo Componente" sortBy="#{product.tipoComponente}" >
+				            	<h:outputText value="#{product.tipoComponente}"/>  
+				            </p:column>
+				            <p:column headerText="Identificador" sortBy="#{product.identificador}" >
+				         		<h:outputText value="#{product.identificador}"/>
+				            </p:column>
+				            <p:column headerText="Descripción" sortBy="#{product.descripcion}" >
+				            	<h:outputText value="#{product.descripcion}"/>  
+				            </p:column>
+				            <p:column exportable="false" headerText="Ver Detalle">
+			                    <p:commandButton icon="pi pi-pencil" update=":form:manage-product-content"
+	                                 oncomplete="PF('manageProductDialog').show()"
+	                                 styleClass="edit-button rounded-button ui-button-success" process="@this">
+				                    <f:setPropertyActionListener value="#{product}" target="#{searchViewController.selectedProduct}"/>
+				                    <p:resetInput target=":form:manage-product-content"/>
+				                </p:commandButton>
+				            </p:column>
+				        </p:dataTable>
+				
+				       
+						<p:dialog header="Detalle del componente" showEffect="fade" modal="true"
+		                  widgetVar="manageProductDialog" responsive="true">
+				            <p:outputPanel id="manage-product-content" class="ui-fluid">
+				                <p:outputPanel rendered="#{not empty searchViewController.selectedProduct}">
+				                	<div id="solucion" jsf:rendered="#{searchViewController.selectedProduct.tipoComponente eq 'SOLUCION'}">
+				                		<div class="p-field">
+					                        <p:outputLabel for="identificadorSol">Identificador</p:outputLabel>
+					                        <p:inputText id="identificadorSol" value="#{searchViewController.selectedProduct.identificador}" readonly="true"/>
+					                    </div>
+					                    <div class="p-field">
+					                        <p:outputLabel for="descripcionSol">Descripción</p:outputLabel>
+					                        <p:inputTextarea id="descripcionSol" value="#{searchViewController.selectedProduct.descripcion}" readonly="true" rows="4" cols="60" autoResize="true"/>
+					                    </div>
+				                	</div>
+
+
+				                	<div id="aplicacion" jsf:rendered="#{searchViewController.selectedProduct.tipoComponente eq 'APLICACION'}">
+				                		<div class="p-field">
+					                        <p:outputLabel for="identificadorApp">Identificador</p:outputLabel>
+					                        <p:inputText id="identificadorApp" value="#{searchViewController.selectedProduct.identificador}" readonly="true"/>
+					                    </div>
+					                    <div class="p-field">
+					                        <p:outputLabel for="descripcionApp">Descripción</p:outputLabel>
+					                        <p:inputTextarea id="descripcionApp" value="#{searchViewController.selectedProduct.descripcion}" readonly="true" rows="4" cols="60" autoResize="true"/>
+					                    </div>
+				                	</div>
+
+				                	
+				                	<div id="interface" jsf:rendered="#{searchViewController.selectedProduct.tipoComponente eq 'INTERFACE'}">
+				                		<div class="p-field">
+					                        <p:outputLabel for="identificadorInter">Identificador</p:outputLabel>
+					                        <p:inputText id="identificadorInter" value="#{searchViewController.selectedProduct.identificador}" readonly="true"/>
+					                    </div>
+					                    <div class="p-field">
+					                        <p:outputLabel for="tipoInter">Tipo de Interface</p:outputLabel>
+					                        <p:inputText id="tipoInter" value="#{searchViewController.selectedProduct.componentes.get(0).tipoInterface}" readonly="true"/>
+					                    </div>
+					                    <div class="p-field">
+					                        <p:outputLabel for="descripcionInter">Descripción</p:outputLabel>
+					                        <p:inputTextarea id="descripcionInter" value="#{searchViewController.selectedProduct.descripcion}" readonly="true" rows="4" cols="60" autoResize="true"/>
+					                    </div>
+				                	</div>
+				                	
+		 						</p:outputPanel>
+                			</p:outputPanel>
+		        		</p:dialog>
+			
+				        <p:confirmDialog global="true" showEffect="fade" width="300">
+				            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check"/>
+				            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-secondary"
+				                             icon="pi pi-times"/>
+				        </p:confirmDialog>
+				    </div>
+				
+				
+			</h:form>
+			
+		</ui:define>
+	</ui:composition>
+</html>
+
