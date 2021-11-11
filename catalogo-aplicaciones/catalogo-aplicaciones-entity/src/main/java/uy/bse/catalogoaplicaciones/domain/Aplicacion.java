@@ -1,7 +1,9 @@
 package uy.bse.catalogoaplicaciones.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -14,8 +16,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
 
 @Entity
 public class Aplicacion extends ComponenteSoftware {
@@ -27,13 +31,13 @@ public class Aplicacion extends ComponenteSoftware {
 	@NotNull
 	private AplicacionLenguaje aplicacionLenguaje;
 	
-	@OneToMany(fetch = FetchType.EAGER) // 1 - N (Aplicacion --> Interface) - provee
-	@JoinTable(name = "Aplicacione_PInterfaces")
-	private List<Interface> proveeInterface = new ArrayList<Interface>();
+	@OneToMany(fetch = FetchType.EAGER) 
+	@JoinTable(name = "Aplicacion_PInterfaces")
+	private Set<Interface> proveeInterface = new HashSet<Interface>();
 	
-	@OneToMany  // 1 - N (Aplicacion --> Interface) - consume
-	@JoinTable(name = "Aplicacione_CInterfaces")
-	private List<Interface> consumeInterface = new ArrayList<Interface>();;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "Aplicacion_CInterfaces")
+	private Set<Interface> consumeInterface = new HashSet<Interface>();
 	
 	
 	public Aplicacion() {
@@ -55,7 +59,7 @@ public class Aplicacion extends ComponenteSoftware {
 		this.aplicacionLenguaje = aplicacionLenguaje;
 	}
 	
-	public List<Interface> getProveeInterface() {
+	public Set<Interface> getProveeInterface() {
 		return proveeInterface;
 	}
 
@@ -63,7 +67,7 @@ public class Aplicacion extends ComponenteSoftware {
 		this.proveeInterface.add(p);
 	}
 	
-	public List<Interface> getConsumeInterface() {
+	public Set<Interface> getConsumeInterface() {
 		return consumeInterface;
 	}
 

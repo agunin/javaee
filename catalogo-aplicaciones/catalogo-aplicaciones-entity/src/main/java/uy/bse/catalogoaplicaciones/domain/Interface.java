@@ -22,17 +22,10 @@ public class Interface extends ComponenteSoftware {
 	@Enumerated(value = EnumType.STRING)
 	@NotNull
 	private InterfaceTipo tipoInterface;
-	/*
-	 * @Id
-	 * 
-	 * @Column(name = "idInterface")
-	 * 
-	 * @GeneratedValue(strategy = GenerationType.AUTO) private Long id;
-	 */
+
 
 	public Interface() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Interface(String identificador,String descripcion,InterfaceTipo tipoInterface) {
@@ -49,35 +42,6 @@ public class Interface extends ComponenteSoftware {
 		this.tipoInterface = tipoInterface;
 	}
 
-	/*
-	 * @ManyToOne()
-	 * 
-	 * @JoinColumn(name = "proveeInterface") private Aplicacion aplicaiconProvee;
-	 * 
-	 * 
-	 * @ManyToOne()
-	 * 
-	 * @JoinColumn(name = "idAplicacion") private List<Aplicacion>
-	 * aplicaiconConsume;
-	 */
-
-	/*
-	 * public Long getId() { return id; }
-	 * 
-	 * public void setId(Long id) { this.id = id; }
-	 */
-
-	/*
-	 * public Aplicacion getAplicaiconProvee() { return aplicaiconProvee; }
-	 * 
-	 * public void setAplicaiconProvee(Aplicacion aplicaiconProvee) {
-	 * this.aplicaiconProvee = aplicaiconProvee; }
-	 */
-	/*
-	 * public List<Aplicacion> getAplicaiconConsume() { return aplicaiconConsume; }
-	 * 
-	 * public void setAplicaiconConsume(List<Aplicacion> aplicaiconConsume) {
-	 * this.aplicaiconConsume = aplicaiconConsume; }
-	 */
+	
 
 }

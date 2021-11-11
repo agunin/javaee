@@ -5,7 +5,10 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
+import uy.bse.catalogoaplicaciones.domain.ComponenteSoftware;
+import uy.bse.catalogoaplicaciones.domain.Interface;
 import uy.bse.catalogoaplicaciones.domain.Usuario;
 
 /**
@@ -32,5 +35,17 @@ public class UsuarioService extends AbstractService<Usuario, Long>{
 	@Override
 	public EntityManager getEntityManager() {
 		return em;
+	}
+	
+	public List<ComponenteSoftware> getComponenteSofwareByUserCi(String ci){
+		/*
+		 * Query query = em.
+		 * createQuery("Select a.proveeInterface from Aplicacion a where a.identificador = ?1 "
+		 * );
+		 * 
+		 * query.setParameter(1,identificador); List<Interface> result =
+		 * query.getResultList(); return result;
+		 */
+		return null;
 	}
 }

@@ -7,8 +7,10 @@ import java.util.Random;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import uy.bse.catalogoaplicaciones.domain.Aplicacion;
+import uy.bse.catalogoaplicaciones.domain.Interface;
 
 @Stateless
 public class AplicacionService extends AbstractService<Aplicacion, Long> {
@@ -42,6 +44,16 @@ public class AplicacionService extends AbstractService<Aplicacion, Long> {
 	 * 
 	 * }
 	 */
+	
+	public List<Interface> getInterfacesProvistasByAplicacionIdentificador(String identificador){
+		
+		Query query = em.createQuery("Select a.proveeInterface from Aplicacion a where a.identificador = ?1 ");
+		
+		query.setParameter(1,identificador);
+		List<Interface> result = query.getResultList();
+		return result;
+		
+	}
 
 	public List<Aplicacion> getAplicaciones1() {
 		return new ArrayList<>(aplicaciones);
