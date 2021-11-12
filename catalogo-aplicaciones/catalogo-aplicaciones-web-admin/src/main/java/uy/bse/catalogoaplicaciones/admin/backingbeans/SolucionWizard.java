@@ -2,6 +2,7 @@ package uy.bse.catalogoaplicaciones.admin.backingbeans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -82,7 +83,7 @@ public class SolucionWizard implements Serializable {
 	public String save() {
 
 
-		List<ComponenteSoftware> componentesSoftware = new ArrayList<ComponenteSoftware>();
+		Set<ComponenteSoftware> componentesSoftware = new HashSet<ComponenteSoftware>();
 		
 		/******** Aplicaciones Seleccionadas *********/
 		List<Aplicacion> applicacionesSeleccionadas = aplicacionesWizardController.getSelectedAplicaciones();
