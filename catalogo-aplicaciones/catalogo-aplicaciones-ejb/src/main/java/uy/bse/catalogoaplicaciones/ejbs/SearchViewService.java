@@ -31,12 +31,17 @@ public class SearchViewService {
 	public List<Product> getComponentes(String tipoComponente, String palabraClave) {
 		List<Product> componentes = new ArrayList<Product>();
 		if (tipoComponente.equals(TIPO_COMPONENTE_TODOS)) {
+			// busca en Aplicacion
 			List result = em.createQuery("select a from Aplicacion a where a.identificador like '%" + palabraClave
 					+ "%' or a.descripcion like '%" + palabraClave + "%'").getResultList();
 			for (Object obj : result) {
 				Aplicacion a = (Aplicacion) obj;
-				componentes.add(new Product(a.getId(), "APLICACION", a.getIdentificador(), a.getDescripcion()));
+				Product p = new Product(a.getId(), "APLICACION", a.getIdentificador(), a.getDescripcion());
+				p.getComponentes().add(a);
+				componentes.add(p);
 			}
+			
+			// busca en Interface
 			result = em.createQuery("select i from Interface i where i.identificador like '%" + palabraClave
 					+ "%' or i.descripcion like '%" + palabraClave + "%'").getResultList();
 			for (Object obj : result) {
@@ -45,6 +50,8 @@ public class SearchViewService {
 				p.getComponentes().add(a);
 				componentes.add(p);
 			}
+			
+			// busca en solucion
 			result = em.createQuery("select s from Solucion s where s.identificador like '%" + palabraClave
 					+ "%' or s.descripcion like '%" + palabraClave + "%'").getResultList();
 			for (Object obj : result) {

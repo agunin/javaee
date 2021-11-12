@@ -32,16 +32,41 @@ public class CargaDBEJB {
 		em.persist(rol);
 		em.flush();
 
-		Interface inter = new Interface("Interface1", "Esta es la Interface1", InterfaceTipo.PROCEDURE_SQL);
+		Interface inter = new Interface("Interface1", "Esta es la Interface", InterfaceTipo.PROCEDURE_SQL);
 		em.persist(inter);
 		em.flush();
 
-		Interface inter1 = new Interface("Interface2", "Esta es la Interface2", InterfaceTipo.PROCEDURE_SQL);
+		Interface inter1 = new Interface("Interface2", "Esta es la Interface1", InterfaceTipo.PROCEDURE_SQL);
 		em.persist(inter1);
 		em.flush();
 
-		Interface inter2 = new Interface("Interface2", "Esta es la Interface3", InterfaceTipo.PROCEDURE_SQL);
+		Interface inter2 = new Interface("Interface2", "Esta es la Interface2", InterfaceTipo.PROCEDURE_SQL);
 		em.persist(inter2);
+		em.flush();
+		
+		Interface inter3 = new Interface("Interface3", "Esta es la Interface3", InterfaceTipo.BATCH);
+		em.persist(inter3);
+		em.flush();
+		Interface inter4 = new Interface("Interface4", "Esta es la Interface4", InterfaceTipo.REST);
+		em.persist(inter4);
+		em.flush();
+		Interface inter5 = new Interface("Interface5", "Esta es la Interface5", InterfaceTipo.PROCEDURE_SQL);
+		em.persist(inter5);
+		em.flush();
+		Interface inter6 = new Interface("Interface6", "Esta es la Interface6", InterfaceTipo.SOAP);
+		em.persist(inter6);
+		em.flush();
+		Interface inter7 = new Interface("Interface7", "Esta es la Interface7", InterfaceTipo.PROCEDURE_SQL);
+		em.persist(inter7);
+		em.flush();
+		Interface inter8 = new Interface("Interface8", "Esta es la Interface8", InterfaceTipo.BATCH);
+		em.persist(inter8);
+		em.flush();
+		Interface inter9 = new Interface("Interface9", "Esta es la Interface9", InterfaceTipo.BATCH);
+		em.persist(inter9);
+		em.flush();
+		Interface inter10 = new Interface("Interface10", "Esta es la Interface10", InterfaceTipo.REST);
+		em.persist(inter10);
 		em.flush();
 
 		Aplicacion app1 = new Aplicacion("Aplicacion1", "Esta es la Aplicacion1", AplicacionLenguaje.JAVA);
@@ -57,6 +82,28 @@ public class CargaDBEJB {
 		em.flush();
 
 		app2.addProveeInterface(inter1);
+		app2.addProveeInterface(inter2);
+		app2.addProveeInterface(inter3);
+		app2.addProveeInterface(inter4);
+		app2.addProveeInterface(inter5);
+		app2.addProveeInterface(inter6);
+		app2.addProveeInterface(inter7);
+		app2.addProveeInterface(inter8);
+		app2.addProveeInterface(inter9);
+		app2.addProveeInterface(inter10);
+		em.persist(app2);
+		em.flush();
+		
+		app2.addConsumeInterface(inter1);
+		app2.addConsumeInterface(inter2);
+		app2.addConsumeInterface(inter3);
+		app2.addConsumeInterface(inter4);
+		app2.addConsumeInterface(inter5);
+		app2.addConsumeInterface(inter6);
+		app2.addConsumeInterface(inter7);
+		app2.addConsumeInterface(inter8);
+		app2.addConsumeInterface(inter9);
+		app2.addConsumeInterface(inter10);
 		em.persist(app2);
 		em.flush();
 
