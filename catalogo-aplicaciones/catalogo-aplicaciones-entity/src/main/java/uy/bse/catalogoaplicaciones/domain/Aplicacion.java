@@ -75,4 +75,12 @@ public class Aplicacion extends ComponenteSoftware {
 		this.consumeInterface.add(c);
 	}
 
+	public void setProveeInterface(Set<Interface> proveeInterface) {
+		this.proveeInterface = proveeInterface;
+	}
+
+	public void setConsumeInterface(Set<Interface> consumeInterface) {
+		this.consumeInterface = consumeInterface;
+	}
+
 }
