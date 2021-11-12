@@ -1,10 +1,14 @@
-package uy.bse.catalogoaplicaciones.domain;
+package uy.bse.catalogoaplicaciones.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Product implements Serializable {
+import org.primefaces.model.TreeNode;
+
+import uy.bse.catalogoaplicaciones.domain.ComponenteSoftware;
+
+public class ProductFrontEnd implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -15,11 +19,13 @@ public class Product implements Serializable {
 
 	private List<ComponenteSoftware> componentes;
 
-	public Product() {
+	private TreeNode root3;
+
+	public ProductFrontEnd() {
 		componentes = new ArrayList<ComponenteSoftware>();
 	}
 
-	public Product(Long id, String tipoComponente, String identificador, String descripcion) {
+	public ProductFrontEnd(Long id, String tipoComponente, String identificador, String descripcion) {
 		this.id = id;
 		this.tipoComponente = tipoComponente;
 		this.identificador = identificador;
@@ -28,8 +34,8 @@ public class Product implements Serializable {
 	}
 
 	@Override
-	public Product clone() {
-		return new Product(getId(), getTipoComponente(), getIdentificador(), getDescripcion());
+	public ProductFrontEnd clone() {
+		return new ProductFrontEnd(getId(), getTipoComponente(), getIdentificador(), getDescripcion());
 	}
 
 	public Long getId() {
@@ -64,12 +70,47 @@ public class Product implements Serializable {
 		this.descripcion = descripcion;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		ProductFrontEnd other = (ProductFrontEnd) obj;
+		if (id == null) {
+			return other.id == null;
+		} else {
+			return id.equals(other.id);
+		}
+	}
+
 	public List<ComponenteSoftware> getComponentes() {
 		return componentes;
 	}
 
 	public void setComponentes(List<ComponenteSoftware> componentes) {
 		this.componentes = componentes;
+	}
+
+	public TreeNode getRoot3() {
+		return root3;
+	}
+
+	public void setRoot3(TreeNode root3) {
+		this.root3 = root3;
 	}
 
 }

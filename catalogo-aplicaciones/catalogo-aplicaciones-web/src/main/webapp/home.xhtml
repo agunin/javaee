@@ -109,6 +109,22 @@
 					                        <p:outputLabel for="descripcionSol">Descripción</p:outputLabel>
 					                        <p:inputTextarea id="descripcionSol" value="#{searchViewController.selectedProduct.descripcion}" readonly="true" rows="4" cols="60" autoResize="true"/>
 					                    </div>
+					                     <p:panel header="Componentes que conforman la solución">
+											<p:tree value="#{searchViewController.selectedProduct.root3}" var="doc">
+												<p:treeNode expandedIcon="pi pi-folder-open" collapsedIcon="pi pi-folder">
+													<h:outputText value="#{doc.identificador}"/>
+												</p:treeNode>
+												<p:treeNode type="app" icon="pi pi-desktop">
+													<h:outputText value="#{doc.identificador}"/>
+												</p:treeNode>
+												<p:treeNode type="pinterface" icon="pi pi-sign-out">
+													<h:outputText value="#{doc.identificador}"/>
+												</p:treeNode>
+												<p:treeNode type="cinterface" icon="pi pi-sign-out">
+													<h:outputText value="#{doc.identificador}"/>
+												</p:treeNode>
+											</p:tree>
+										</p:panel>
 				                	</div>
 
 
@@ -125,36 +141,34 @@
 					                        <p:outputLabel for="descripcionApp">Descripción</p:outputLabel>
 					                        <p:inputTextarea id="descripcionApp" value="#{searchViewController.selectedProduct.descripcion}" readonly="true" rows="4" cols="60" autoResize="true"/>
 					                    </div>
-					                    <!-- div class="p-field" -->
-					                    	<p:dataTable id="proveeInterface" style="width:560px;" var="interface"  rows="5" paginator="true"
-                     								paginatorPosition="bottom" value="#{searchViewController.selectedProduct.componentes.get(0).proveeInterface}">
-										            <f:facet name="header">Interfaces que provee</f:facet>
-										
-										            <p:column headerText="Identificador">
-										                <h:outputText value="#{interface.identificador}" />
-										            </p:column>
-										            <p:column headerText="Tipo de Interface">
-										                <h:outputText value="#{interface.tipoInterface}" />
-										            </p:column>
-										            <p:column headerText="Descripción">
-										                <h:outputText value="#{interface.descripcion}" />
-										            </p:column>
-									        </p:dataTable>
-									        <p:dataTable id="consumeInterface" style="width:560px;" var="interface"  rows="5" paginator="true"
-                     								paginatorPosition="bottom" value="#{searchViewController.selectedProduct.componentes.get(0).consumeInterface}">
-										            <f:facet name="header">Interfaces que consume</f:facet>
-										
-										            <p:column headerText="Identificador">
-										                <h:outputText value="#{interface.identificador}" />
-										            </p:column>
-										            <p:column headerText="Tipo de Interface">
-										                <h:outputText value="#{interface.tipoInterface}" />
-										            </p:column>
-										            <p:column headerText="Descripción">
-										                <h:outputText value="#{interface.descripcion}" />
-										            </p:column>
-									        </p:dataTable>
-									     <!-- /div --> 
+				                    	<p:dataTable id="proveeInterface" style="width:560px;" var="interface"  rows="5" paginator="true"
+                    								paginatorPosition="bottom" value="#{searchViewController.selectedProduct.componentes.get(0).proveeInterface}">
+									            <f:facet name="header">Interfaces que provee</f:facet>
+									
+									            <p:column headerText="Identificador">
+									                <h:outputText value="#{interface.identificador}" />
+									            </p:column>
+									            <p:column headerText="Tipo de Interface">
+									                <h:outputText value="#{interface.tipoInterface}" />
+									            </p:column>
+									            <p:column headerText="Descripción">
+									                <h:outputText value="#{interface.descripcion}" />
+									            </p:column>
+								        </p:dataTable>
+								        <p:dataTable id="consumeInterface" style="width:560px;" var="interface"  rows="5" paginator="true"
+                    								paginatorPosition="bottom" value="#{searchViewController.selectedProduct.componentes.get(0).consumeInterface}">
+									            <f:facet name="header">Interfaces que consume</f:facet>
+									
+									            <p:column headerText="Identificador">
+									                <h:outputText value="#{interface.identificador}" />
+									            </p:column>
+									            <p:column headerText="Tipo de Interface">
+									                <h:outputText value="#{interface.tipoInterface}" />
+									            </p:column>
+									            <p:column headerText="Descripción">
+									                <h:outputText value="#{interface.descripcion}" />
+									            </p:column>
+								        </p:dataTable>
 				                	</div>
 
 				                	

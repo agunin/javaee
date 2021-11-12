@@ -1,7 +1,8 @@
 package uy.bse.catalogoaplicaciones.domain;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -13,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -36,18 +36,17 @@ public class Solucion extends BaseEntity<Long> {
 	@Basic(fetch = FetchType.LAZY)
 	private String descripcion;
 
-	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL )
-	private List<ComponenteSoftware> componentesSoftware;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<ComponenteSoftware> componentesSoftware;
 
 	public Solucion() {
 		super();
-		componentesSoftware = new ArrayList<ComponenteSoftware>();
-
+		componentesSoftware = new HashSet<ComponenteSoftware>();
 	}
 
 	public Solucion(String identificador, String descripcion) {
 		super();
-		componentesSoftware = new ArrayList<ComponenteSoftware>();
+		componentesSoftware = new HashSet<ComponenteSoftware>();
 		this.identificador = identificador;
 		this.descripcion = descripcion;
 
@@ -77,11 +76,11 @@ public class Solucion extends BaseEntity<Long> {
 		this.descripcion = descripcion;
 	}
 
-	public List<ComponenteSoftware> getComponentesSoftware() {
+	public Set<ComponenteSoftware> getComponentesSoftware() {
 		return componentesSoftware;
 	}
 
-	public void setComponentesSoftware(List<ComponenteSoftware> componentesSoftware) {
+	public void setComponentesSoftware(Set<ComponenteSoftware> componentesSoftware) {
 		this.componentesSoftware = componentesSoftware;
 	}
 
