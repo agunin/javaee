@@ -61,28 +61,22 @@
 						
 				</div>
 			
-				
 				<br/>
-				
-				
 			        <div>
 				        <p:growl id="messages" showDetail="true"/>
 				
-
-
-                     
-                     <p:dataTable id="listaComponentes" var="product" value="#{searchViewController.products}" rows="10"
-                     paginator="true"
+                      <p:dataTable id="listaComponentes" var="product" value="#{searchViewController.lazyModel}" rows="10"
+                     paginator="true" 
                      paginatorPosition="bottom"
-                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
 			                     
-				            <p:column headerText="Tipo Componente" sortBy="#{product.tipoComponente}" >
+				            <p:column headerText="Tipo Componente" sortBy="#{product.tipoComponente}">
 				            	<h:outputText value="#{product.tipoComponente}"/>  
 				            </p:column>
 				            <p:column headerText="Identificador" sortBy="#{product.identificador}" >
 				         		<h:outputText value="#{product.identificador}"/>
 				            </p:column>
-				            <p:column headerText="Descripción" sortBy="#{product.descripcion}" >
+				            <p:column headerText="Descripción" sortBy="#{product.descripcion}">
 				            	<h:outputText value="#{product.descripcion}"/>  
 				            </p:column>
 				            <p:column exportable="false" headerText="Ver Detalle">

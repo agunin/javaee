@@ -3,6 +3,7 @@ package uy.bse.catalogoaplicaciones.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.primefaces.model.TreeNode;
 
@@ -20,6 +21,24 @@ public class ProductFrontEnd implements Serializable {
 	private List<ComponenteSoftware> componentes;
 
 	private TreeNode root3;
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		ProductFrontEnd p = (ProductFrontEnd) o;
+		return id == p.id && tipoComponente == p.tipoComponente && identificador == p.identificador
+				&& Objects.equals(componentes, p.componentes) && Objects.equals(root3, p.root3);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, tipoComponente, identificador, componentes, root3);
+	}
 
 	public ProductFrontEnd() {
 		componentes = new ArrayList<ComponenteSoftware>();
@@ -68,33 +87,6 @@ public class ProductFrontEnd implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		ProductFrontEnd other = (ProductFrontEnd) obj;
-		if (id == null) {
-			return other.id == null;
-		} else {
-			return id.equals(other.id);
-		}
 	}
 
 	public List<ComponenteSoftware> getComponentes() {
