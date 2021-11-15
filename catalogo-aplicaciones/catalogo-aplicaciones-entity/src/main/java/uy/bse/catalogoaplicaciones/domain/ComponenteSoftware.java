@@ -1,7 +1,9 @@
 package uy.bse.catalogoaplicaciones.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -15,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -41,8 +44,8 @@ public abstract class ComponenteSoftware extends BaseEntity<Long> {
 	@Basic(fetch = FetchType.LAZY)
 	private String descripcion;
 	
-	@OneToMany(mappedBy = "componenteSoftware")
-	private List<Rol> roles = new ArrayList<Rol>();
+	@ManyToMany(mappedBy = "componentesSoftware")
+	private Set<Rol> roles = new HashSet<Rol>();
 
 
 	public Long getId() {
@@ -67,6 +70,16 @@ public abstract class ComponenteSoftware extends BaseEntity<Long> {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	
+
+	public Set<Rol> getRoles() {
+		return roles;
+	}
+
+	
+	public void addRoles(Rol rol) {
+		this.roles.add(rol);
 	}
 
 }

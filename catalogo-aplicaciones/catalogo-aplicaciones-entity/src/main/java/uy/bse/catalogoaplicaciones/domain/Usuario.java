@@ -1,7 +1,9 @@
 package uy.bse.catalogoaplicaciones.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -36,17 +39,19 @@ public class Usuario extends BaseEntity<Long> {
 	//validator format mail
 	private String email;
 	
-	@OneToMany(mappedBy = "usuario")
-	private List<Rol> roles = new ArrayList<Rol>();
+	@ManyToMany(mappedBy = "usuarios")
+	private Set<Rol> roles = new HashSet<Rol>() ;
+
+
 
 	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Usuario(Long id, String nombre, String apellido, String documentoIdentidad, String email) {
+	public Usuario(String nombre, String apellido, String documentoIdentidad, String email) {
 		super();
-		this.id = id;
+		//this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.documentoIdentidad = documentoIdentidad;
@@ -91,5 +96,13 @@ public class Usuario extends BaseEntity<Long> {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public Set<Rol> getRoles() {
+		return roles;
+	}
+
+	public void addRoles(Rol rol) {
+		this.roles.add(rol);
 	}
 }

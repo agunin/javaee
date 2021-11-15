@@ -1,7 +1,12 @@
 package uy.bse.catalogoaplicaciones.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Rol extends BaseEntity<Long> {
@@ -19,16 +24,19 @@ public class Rol extends BaseEntity<Long> {
 	private RolTipo rolTipo;
 	
 	
-	//ManytoOne a Usuario
-	@ManyToOne
-	@JoinTable(name="rol_usuario", joinColumns = @JoinColumn(name="fk_usuario"), inverseJoinColumns = @JoinColumn(name="fk_rol"))
-	private Usuario usuario;
+	//ManytoMany a Usuario
+	@ManyToMany
+	@JoinTable(name="rol_usuario",
+	joinColumns = @JoinColumn(name="fk_usuario"),
+	inverseJoinColumns = @JoinColumn(name="fk_rol"))
+	private Set<Usuario> usuarios = new HashSet<Usuario>();
 
-	
-	//ManytoOne a ComponenteSoftware
-	@ManyToOne
-	@JoinTable(name="rol_csoftware", joinColumns = @JoinColumn(name="fk_csoftware"), inverseJoinColumns = @JoinColumn(name="fk_rol"))
-	private ComponenteSoftware componenteSoftware;
+	//ManytoMany a ComponenteSoftware
+	@ManyToMany
+	@JoinTable(name="rol_csoftware",
+	joinColumns = @JoinColumn(name="fk_csoftware"),
+	inverseJoinColumns = @JoinColumn(name="fk_rol"))
+	private Set<ComponenteSoftware> componentesSoftware = new HashSet<ComponenteSoftware>();
 	
 	
 	
@@ -59,6 +67,27 @@ public class Rol extends BaseEntity<Long> {
 
 	public void setRolTipo(RolTipo rolTipo) {
 		this.rolTipo = rolTipo;
+	}
+	
+
+	public Set<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+
+	public void addUsuario(Usuario usuario) {
+		this.usuarios.add(usuario);
+		usuario.addRoles(this);
+	}
+
+
+	public Set<ComponenteSoftware> getComponentesSoftware() {
+		return componentesSoftware;
+	}
+
+	public void addComponenteSoftware(ComponenteSoftware componenteSoftware) {
+		this.componentesSoftware.add(componenteSoftware);
+		componenteSoftware.addRoles(this);
 	}
 
 }
