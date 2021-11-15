@@ -1,11 +1,6 @@
 package uy.bse.catalogoaplicaciones.domain;
 
 import javax.persistence.*;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -25,9 +20,18 @@ public class Rol extends BaseEntity<Long> {
 	
 	
 	//ManytoOne a Usuario
+	@ManyToOne
+	@JoinTable(name="rol_usuario", joinColumns = @JoinColumn(name="fk_usuario"), inverseJoinColumns = @JoinColumn(name="fk_rol"))
+	private Usuario usuario;
+
 	
 	//ManytoOne a ComponenteSoftware
-
+	@ManyToOne
+	@JoinTable(name="rol_csoftware", joinColumns = @JoinColumn(name="fk_csoftware"), inverseJoinColumns = @JoinColumn(name="fk_rol"))
+	private ComponenteSoftware componenteSoftware;
+	
+	
+	
 	public Rol() {
 		super();
 	}

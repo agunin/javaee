@@ -1,6 +1,10 @@
 package uy.bse.catalogoaplicaciones.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
@@ -11,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -35,6 +40,10 @@ public abstract class ComponenteSoftware extends BaseEntity<Long> {
 	@Size(min = 4)
 	@Basic(fetch = FetchType.LAZY)
 	private String descripcion;
+	
+	@OneToMany(mappedBy = "componenteSoftware")
+	private List<Rol> roles = new ArrayList<Rol>();
+
 
 	public Long getId() {
 		return id;
