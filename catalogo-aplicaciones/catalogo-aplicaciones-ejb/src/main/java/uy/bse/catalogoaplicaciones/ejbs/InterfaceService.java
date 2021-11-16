@@ -10,14 +10,14 @@ import uy.bse.catalogoaplicaciones.domain.Aplicacion;
 import uy.bse.catalogoaplicaciones.domain.Interface;
 
 @Stateless
-public class InterfaceService extends AbstractService<Aplicacion, Long> {
+public class InterfaceService extends AbstractService<Interface, Long> {
 
 	@PersistenceContext(unitName = "catalogo_aplicaciones")
 	protected EntityManager em;
 
 
 	public InterfaceService() {
-		super(Aplicacion.class);
+		super(Interface.class);
 	}
 
 	@SuppressWarnings("unchecked")
