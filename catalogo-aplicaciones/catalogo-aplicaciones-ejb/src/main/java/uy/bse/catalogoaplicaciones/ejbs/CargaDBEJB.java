@@ -24,13 +24,20 @@ public class CargaDBEJB {
 	public void init() {
 		System.out.println("************ PostConstruct SingletonEJB ************");
 
-		Solucion sol = new Solucion("Solucion1", "Esta es la Solucion1");
-		em.persist(sol);
+		Usuario u1 = new Usuario("Agustin", "Nin", "41059731","aguquimnin@gmail.com");
+		em.persist(u1);
 		em.flush();
+		
+		Usuario u2 = new Usuario("Luciana", "Canales", "40000001","lcanales@gmail.com");
+		em.persist(u2);
+		em.flush();
+		
+		
+		
 
-		Rol rol = new Rol(RolTipo.DESARROLLADOR);
-		em.persist(rol);
-		em.flush();
+		
+		
+		
 
 		Interface inter = new Interface("Interface1", "Esta es la Interface", InterfaceTipo.PROCEDURE_SQL);
 		em.persist(inter);
@@ -69,13 +76,18 @@ public class CargaDBEJB {
 		em.persist(inter10);
 		em.flush();
 
-		Aplicacion app1 = new Aplicacion("Aplicacion1", "Esta es la Aplicacion1", AplicacionLenguaje.JAVA);
+		Aplicacion app1 = new Aplicacion("pdi", "Esta es la Aplicacion1", AplicacionLenguaje.JAVA);
 		em.persist(app1);
 		em.flush();
 
 		app1.addProveeInterface(inter);
 		em.persist(app1);
 		em.flush();
+		
+		app1.addConsumeInterface(inter);
+		em.persist(app1);
+		em.flush();
+		
 
 		Aplicacion app2 = new Aplicacion("Aplicacion2", "Esta es la Aplicacion2", AplicacionLenguaje.PHP);
 		em.persist(app2);
@@ -174,6 +186,29 @@ public class CargaDBEJB {
 		Cluster cluster2 = new Cluster("Identificador_cluster_2",
 				"Descripción del cluster 2 que debe ser minimo de sesenta caracteres.");
 		em.persist(cluster2);
+		em.flush();
+		
+		
+		
+		Rol u1_desarrollador_app1 = new Rol(RolTipo.DESARROLLADOR);
+		u1_desarrollador_app1.setUsuario(u1);
+		u1_desarrollador_app1.setComponenteSoftware(app1);
+		//desarrollador.addComponenteSoftware(app2);
+		em.persist(u1_desarrollador_app1);
+		em.flush();
+		
+	
+		Rol u2_desarrollador_app1 = new Rol(RolTipo.DESARROLLADOR);
+		u2_desarrollador_app1.setUsuario(u2);
+		u2_desarrollador_app1.setComponenteSoftware(app1);
+		//desarrollador.addComponenteSoftware(app2);
+		em.persist(u2_desarrollador_app1);
+		em.flush();
+		
+		Rol u1_funcional_app1 = new Rol(RolTipo.OPERADOR_FUNCIONAL);
+		u1_funcional_app1.setUsuario(u1);
+		u1_funcional_app1.setComponenteSoftware(app2);
+		em.persist(u1_funcional_app1);
 		em.flush();
 
 	}
