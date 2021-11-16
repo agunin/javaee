@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import uy.bse.catalogoaplicaciones.domain.ComponenteSoftware;
 import uy.bse.catalogoaplicaciones.domain.Interface;
+import uy.bse.catalogoaplicaciones.domain.RolTipo;
 import uy.bse.catalogoaplicaciones.domain.Usuario;
 
 /**
@@ -37,15 +38,18 @@ public class UsuarioService extends AbstractService<Usuario, Long>{
 		return em;
 	}
 	
-	public List<ComponenteSoftware> getComponenteSofwareByUserCi(String ci){
-		/*
-		 * Query query = em.
-		 * createQuery("Select a.proveeInterface from Aplicacion a where a.identificador = ?1 "
-		 * );
-		 * 
-		 * query.setParameter(1,identificador); List<Interface> result =
-		 * query.getResultList(); return result;
-		 */
-		return null;
+	public List<ComponenteSoftware> getComponenteSofwareByUserCi(String ci,RolTipo rol){
+		
+		Query query = em.createQuery("SELECT c FROM Rol r "
+				+ "JOIN r.usuarios u "
+				+ "JOIN r.componentesSoftware c "
+				+ "WHERE u.documentoIdentidad = ?1 AND r.rolTipo = ?2");
+		
+		
+		
+		query.setParameter(1,ci);
+		query.setParameter(2,rol);
+		List<ComponenteSoftware> result = query.getResultList();
+		return result;
 	}
 }

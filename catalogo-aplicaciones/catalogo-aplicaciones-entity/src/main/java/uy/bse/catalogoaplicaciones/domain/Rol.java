@@ -6,8 +6,6 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import javax.persistence.ManyToMany;
-
 @Entity
 public class Rol extends BaseEntity<Long> {
 
@@ -25,14 +23,14 @@ public class Rol extends BaseEntity<Long> {
 	
 	
 	//ManytoMany a Usuario
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="rol_usuario",
 	joinColumns = @JoinColumn(name="fk_usuario"),
 	inverseJoinColumns = @JoinColumn(name="fk_rol"))
 	private Set<Usuario> usuarios = new HashSet<Usuario>();
 
 	//ManytoMany a ComponenteSoftware
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="rol_csoftware",
 	joinColumns = @JoinColumn(name="fk_csoftware"),
 	inverseJoinColumns = @JoinColumn(name="fk_rol"))
@@ -77,7 +75,7 @@ public class Rol extends BaseEntity<Long> {
 
 	public void addUsuario(Usuario usuario) {
 		this.usuarios.add(usuario);
-		usuario.addRoles(this);
+		//usuario.addRoles(this);
 	}
 
 
@@ -87,7 +85,7 @@ public class Rol extends BaseEntity<Long> {
 
 	public void addComponenteSoftware(ComponenteSoftware componenteSoftware) {
 		this.componentesSoftware.add(componenteSoftware);
-		componenteSoftware.addRoles(this);
+		//componenteSoftware.addRoles(this);
 	}
 
 }

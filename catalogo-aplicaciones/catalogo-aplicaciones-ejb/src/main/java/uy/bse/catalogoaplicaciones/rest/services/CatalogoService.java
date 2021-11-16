@@ -21,6 +21,7 @@ import uy.bse.catalogoaplicaciones.domain.Aplicacion;
 import uy.bse.catalogoaplicaciones.domain.AplicacionLenguaje;
 import uy.bse.catalogoaplicaciones.domain.ComponenteSoftware;
 import uy.bse.catalogoaplicaciones.domain.Interface;
+import uy.bse.catalogoaplicaciones.domain.RolTipo;
 import uy.bse.catalogoaplicaciones.domain.Usuario;
 import uy.bse.catalogoaplicaciones.ejbs.AplicacionService;
 import uy.bse.catalogoaplicaciones.ejbs.UsuarioService;
@@ -46,8 +47,7 @@ public class CatalogoService implements ICatalogoRest {
 	@Override
 	public Response getComponenteSofwareByUserCi(String ci) {
 		
-		List<ComponenteSoftware>componentesSoftware = usuarioService.getComponenteSofwareByUserCi(ci);
-		//Aplicacion a = new Aplicacion("identificador", "descripcion", AplicacionLenguaje.JAVA);
+		List<ComponenteSoftware>componentesSoftware = usuarioService.getComponenteSofwareByUserCi(ci,RolTipo.DESARROLLADOR);
 		return Response.ok(componentesSoftware).build();
 	}
 
