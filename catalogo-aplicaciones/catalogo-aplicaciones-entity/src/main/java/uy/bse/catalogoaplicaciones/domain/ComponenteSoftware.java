@@ -44,9 +44,6 @@ public abstract class ComponenteSoftware extends BaseEntity<Long> {
 	@Basic(fetch = FetchType.LAZY)
 	private String descripcion;
 	
-	//@ManyToMany(mappedBy = "componentesSoftware")
-	//private Set<Rol> roles = new HashSet<Rol>();
-
 
 	public Long getId() {
 		return id;
@@ -72,12 +69,5 @@ public abstract class ComponenteSoftware extends BaseEntity<Long> {
 		this.descripcion = descripcion;
 	}
 	
-
-	/*
-	 * public Set<Rol> getRoles() { return roles; }
-	 * 
-	 * 
-	 * public void addRoles(Rol rol) { this.roles.add(rol); }
-	 */
 
 }

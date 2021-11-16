@@ -39,9 +39,6 @@ public class Usuario extends BaseEntity<Long> {
 	//validator format mail
 	private String email;
 	
-	//@ManyToMany(mappedBy = "usuarios")
-	//private Set<Rol> roles = new HashSet<Rol>() ;
-
 
 
 	public Usuario() {
@@ -98,9 +95,4 @@ public class Usuario extends BaseEntity<Long> {
 		this.email = email;
 	}
 	
-	/*
-	 * public Set<Rol> getRoles() { return roles; }
-	 * 
-	 * public void addRoles(Rol rol) { this.roles.add(rol); }
-	 */
 }
