@@ -198,6 +198,7 @@ public class CargaDBEJB {
 		em.flush();
 		
 	
+		
 		Rol u2_desarrollador_app1 = new Rol(RolTipo.DESARROLLADOR);
 		u2_desarrollador_app1.setUsuario(u2);
 		u2_desarrollador_app1.setComponenteSoftware(app1);
