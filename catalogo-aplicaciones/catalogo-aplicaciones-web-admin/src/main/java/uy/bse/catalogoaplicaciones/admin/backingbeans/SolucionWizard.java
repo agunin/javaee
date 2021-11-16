@@ -71,6 +71,10 @@ public class SolucionWizard implements Serializable {
     	
     }
 
+	public TreeNode getRoot3() {
+		return interfacesWizardController.getRoot3();
+	}
+	
 	public Solucion getSolucion() {
 		
 		return solucionController.getSolucion();
@@ -138,4 +142,6 @@ public class SolucionWizard implements Serializable {
 			return event.getNewStep();
 		}
 	}
+	
+	
 }

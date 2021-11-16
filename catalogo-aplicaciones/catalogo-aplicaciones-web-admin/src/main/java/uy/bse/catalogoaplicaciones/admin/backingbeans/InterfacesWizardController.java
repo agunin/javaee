@@ -67,7 +67,7 @@ public class InterfacesWizardController implements Serializable {
 		
 		for (Aplicacion a : applicacionesSeleccionadas) {
 			
-			if(a.getProveeInterface().size()>0) {
+//			if(a.getProveeInterface().size()>0) {
 				TreeNode aNode = new CheckboxTreeNode("app", a, root3);
 	
 				aNode.setSelectable(false);
@@ -85,7 +85,7 @@ public class InterfacesWizardController implements Serializable {
 					}
 	
 				}
-			}
+	//		}
 
 		}
 	}

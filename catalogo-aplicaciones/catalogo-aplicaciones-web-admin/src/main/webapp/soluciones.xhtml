@@ -18,7 +18,7 @@
 
 
 		<p:linkButton outcome="altaSolucionWizard.xhtml" icon="pi pi-plus"
-			value="Nueva solucion" style="margin-right:20px;" />
+			value="Nueva solución" style="margin-right:20px;" />
 		<br />
 		<br />
 
@@ -35,6 +35,14 @@
 			<div class="card">
 				<p:dataTable var="solucion"
 					value="#{solucionController.listaSoluciones}">
+					
+					<p:column headerText="#{labels['solucion.identificador']}">
+						<h:outputText value="#{solucion.identificador}" />
+					</p:column>
+
+					<p:column headerText="#{labels['solucion.descripcion']}">
+						<h:outputText value="#{solucion.descripcion}" />
+					</p:column>
 
  					<p:column headerText="">
 						<h:link outcome="altaSolucionWizard.xhtml?id=#{solucion.id}">
@@ -53,18 +61,8 @@
         				</p:confirmDialog>
 						
 					</p:column>
-					
-					<!-- <p:column headerText="#{labels['solucion.identificador']}">
-						<h:outputText value="#{solucion.id}" />
-					</p:column> -->
 
-					<p:column headerText="#{labels['solucion.identificador']}">
-						<h:outputText value="#{solucion.identificador}" />
-					</p:column>
 
-					<p:column headerText="#{labels['solucion.descripcion']}">
-						<h:outputText value="#{solucion.descripcion}" />
-					</p:column>
 
 				</p:dataTable>
 			</div>

@@ -34,6 +34,22 @@
 			<div class="card">
 				<p:dataTable var="usuario"
 					value="#{usuarioController.listaUsuarios}">
+					
+					<p:column headerText="#{labels['usuario.documentoIdentidad']}">
+						<h:outputText value="#{usuario.documentoIdentidad}" />
+					</p:column>
+
+					<p:column headerText="#{labels['usuario.nombre']}">
+						<h:outputText value="#{usuario.nombre}" />
+					</p:column>
+
+					<p:column headerText="#{labels['usuario.apellido']}">
+						<h:outputText value="#{usuario.apellido}" />
+					</p:column>
+
+					<p:column headerText="#{labels['usuario.email']}">
+						<h:outputText value="#{usuario.email}" />
+					</p:column>
 
 					<p:column headerText="">
 						<h:link outcome="altaUsuario.xhtml?id=#{usuario.id}">
@@ -53,21 +69,7 @@
 						
 					</p:column>
 
-					<p:column headerText="#{labels['usuario.documentoIdentidad']}">
-						<h:outputText value="#{usuario.documentoIdentidad}" />
-					</p:column>
-
-					<p:column headerText="#{labels['usuario.nombre']}">
-						<h:outputText value="#{usuario.nombre}" />
-					</p:column>
-
-					<p:column headerText="#{labels['usuario.apellido']}">
-						<h:outputText value="#{usuario.apellido}" />
-					</p:column>
-
-					<p:column headerText="#{labels['usuario.email']}">
-						<h:outputText value="#{usuario.email}" />
-					</p:column>
+					
 				</p:dataTable>
 			</div>
 		</h:form>

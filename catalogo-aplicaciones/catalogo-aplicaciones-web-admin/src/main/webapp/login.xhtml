@@ -36,7 +36,7 @@
 						<div class="card">
 							<div class="card-content">
 								<img class="responsive-img" style="max-width: 128px;"
-									src="/resources/images/bse-logo.png" />
+									src="resources/images/bse-logo.png" />
 								<div class="left-align">
 
 									<h:form id="login-form">
@@ -60,12 +60,10 @@
 												<p:message for="password" id="msgPassword"/>
 											</div>
 											<div class="col s12 input-field">
-												<h:commandButton id="btnLogin"
-													action="#{loginController.autenticar()}" value="Login"
-													styleClass="btn btn-large" >
-												
-													<f:ajax execute="@form" render="@form"/>
-												</h:commandButton>	
+												<p:commandButton action="#{loginController.autenticar()}"
+													value="Login">
+													<f:ajax event="click" execute="@form" render="@form" />
+												</p:commandButton>
 											</div>
 										</div>
 									</h:form>
