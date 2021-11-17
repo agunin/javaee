@@ -41,10 +41,9 @@ public class UsuarioService extends AbstractService<Usuario, Long>{
 	public List<ComponenteSoftware> getComponenteSofwareByUserCi(String ci,RolTipo rol){
 		
 		Query query = em.createQuery("SELECT c FROM Rol r "
-				+ "JOIN r.usuarios u "
-				+ "JOIN r.componentesSoftware c "
+				+ "JOIN r.usuario u "
+				+ "JOIN r.componenteSoftware c "
 				+ "WHERE u.documentoIdentidad = ?1 AND r.rolTipo = ?2");
-		
 		
 		
 		query.setParameter(1,ci);
