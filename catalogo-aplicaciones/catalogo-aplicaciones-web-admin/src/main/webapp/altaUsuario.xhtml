@@ -25,7 +25,7 @@
 
 				<div class="p-field p-grid" jsf:id="divId" jsf:rendered="#{usuarioController.isManaged(usuarioController.usuario.id)}">
 					<h:outputLabel value="#{labels['usuario.id']}:*"
-						for="inputId" class="p-col-fixed" style="width: 150px" />
+						for="inputId" class="p-col-fixed" style="width: 200px" />
 					<div class="p-col">
 						<p:inputText id="inputId"
 							value="#{usuarioController.usuario.id}" required="true"
@@ -36,7 +36,7 @@
 					
 				<div class="p-field p-grid" jsf:id="divNombre">
 					<h:outputLabel value="#{labels['usuario.nombre']}:*"
-						for="inputNombre" class="p-col-fixed" style="width: 150px" />
+						for="inputNombre" class="p-col-fixed" style="width: 200px" />
 					<div class="p-col">
 						<p:inputText id="inputNombre"
 							value="#{usuarioController.usuario.nombre}" required="true"
@@ -50,7 +50,7 @@
 				
 				<div class="p-field p-grid" jsf:id="divApellido">
 					<h:outputLabel value="#{labels['usuario.apellido']}:*"
-						for="inputApellido" class="p-col-fixed" style="width: 150px" />
+						for="inputApellido" class="p-col-fixed" style="width: 200px" />
 					<div class="p-col">
 						<p:inputText id="inputApellido"
 							value="#{usuarioController.usuario.apellido}" required="true"
@@ -64,7 +64,7 @@
 
 				<div class="p-field p-grid" jsf:id="divDocumentoIdentidad">
 					<h:outputLabel value="#{labels['usuario.documentoIdentidad']}:*"
-						for="inputDocumento" class="p-col-fixed" style="width: 150px" />
+						for="inputDocumento" class="p-col-fixed" style="width: 200px" />
 					<div class="p-col">
 						<p:inputText id="inputDocumentoIdentidad"
 							value="#{usuarioController.usuario.documentoIdentidad}" required="true"
@@ -78,7 +78,7 @@
 
 				<div class="p-field p-grid" jsf:id="divEmail">
 					<h:outputLabel value="#{labels['usuario.email']}:*"
-						for="inputEmail" class="p-col-fixed" style="width: 150px" />
+						for="inputEmail" class="p-col-fixed" style="width: 200px" />
 					<div class="p-col">
 						<p:inputText id="inputEmail"
 							value="#{usuarioController.usuario.email}" required="true"
@@ -90,6 +90,46 @@
 					</div>
 				</div>
 				
+				<div class="p-field p-grid" jsf:id="divRol">
+					<h:outputLabel value="Rol" for="inputRol" class="p-col-fixed" style="width: 200px" />
+					<div class="p-col">
+						<p:selectOneMenu id="rol" value="#{usuarioController.rol}" label="Rol" styleClass="full-width" >
+					    	<f:selectItem itemLabel="--Seleccionar--" itemValue="0"/>
+		                    <f:selectItem itemLabel="DESARROLLADOR" itemValue="1"/>
+		                    <f:selectItem itemLabel="OPERADOR EXTERNO" itemValue="2"/>
+		                    <f:selectItem itemLabel="OPERADOR FUNCIONAL" itemValue="3"/>
+		                    <p:ajax event="change" process="@this" update="divRolComponente" />
+		                </p:selectOneMenu>
+					</div>
+				</div>	
+				<div class="p-field p-grid" jsf:id="divRolComponente">
+				        <div id="divRolComponenteDesarrollador" jsf:rendered="#{usuarioController.rol eq '1'}">
+				        	<h:outputLabel value="Seleccione componentes" class="p-col-fixed" style="width: 200px" />
+					        <p:pickList id="pickListDesarrollador" value="#{usuarioController.lstComponentesDesarrollador}" var="componente"
+			                    itemValue="#{componente}" itemLabel="#{componente.identificador}" converter="#{componenteSoftwareConverter}">
+			                    
+			                    <p:ajax event="transfer" listener="#{usuarioController.onTransfer}"/>
+					        </p:pickList>
+		                </div>
+		                
+		                <div id="divRolComponenteOpExterno" jsf:rendered="#{usuarioController.rol eq '2'}">
+		                	<h:outputLabel value="Seleccione componentes" class="p-col-fixed" style="width: 200px" />
+					        <p:pickList id="pickListOpExterno" value="#{usuarioController.lstComponentesOpExterno}" var="componente"
+			                    itemValue="#{componente}" itemLabel="#{componente.identificador}" converter="#{componenteSoftwareConverter}">
+			                    
+			                    <p:ajax event="transfer" listener="#{usuarioController.onTransfer}"/>
+					        </p:pickList>
+		                </div>
+		                
+		                <div id="divRolComponenteOpFuncional" jsf:rendered="#{usuarioController.rol eq '3'}">
+		                	<h:outputLabel value="Seleccione componentes" class="p-col-fixed" style="width: 200px" />
+					        <p:pickList id="pickListOpFuncional" value="#{usuarioController.lstComponentesOpFuncional}" var="componente"
+			                    itemValue="#{componente}" itemLabel="#{componente.identificador}" converter="#{componenteSoftwareConverter}">
+			                    
+			                    <p:ajax event="transfer" listener="#{usuarioController.onTransfer}"/>
+					        </p:pickList>
+		                </div>
+				</div>
 				
 				<br />
 
