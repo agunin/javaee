@@ -6,6 +6,9 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 public class Rol extends BaseEntity<Long> {
 
@@ -24,11 +27,13 @@ public class Rol extends BaseEntity<Long> {
 	
 	//ManytoOne a Usuario
 	@ManyToOne(fetch = FetchType.EAGER)
+	//@Cascade({CascadeType.SAVE_UPDATE})
 	@JoinColumn(name="fk_usuario")
 	private Usuario usuario;
 
 	//ManytoOne a ComponenteSoftware
 	@ManyToOne(fetch = FetchType.EAGER)
+	//@Cascade({CascadeType.SAVE_UPDATE})
 	@JoinColumn(name="fk_csoftware")
 	private ComponenteSoftware componenteSoftware;
 	

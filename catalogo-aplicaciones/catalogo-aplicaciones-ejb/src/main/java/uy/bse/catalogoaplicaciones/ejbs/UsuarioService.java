@@ -47,18 +47,37 @@ public class UsuarioService extends AbstractService<Usuario, Long> {
 		return result;
 	}
 	
+	private void deleteAllRelacionRolUsuario(RolTipo rolTipo, Long idUsuario) {
+		Query query = em.createQuery("DELETE FROM Rol r WHERE r.rolTipo = ?1 AND r.usuario.id = ?2");
+
+		query.setParameter(1, rolTipo);
+		query.setParameter(2, idUsuario);
+
+		query.executeUpdate();
+	}
+	
 	public void saveRolComponentes(List<ComponenteSoftware> componentes, RolTipo rolTipo, Usuario usuario) {
-		for (ComponenteSoftware cs : componentes) {
-			Rol rol = new Rol(rolTipo);
-			rol.setUsuario(usuario);
-			rol.setComponenteSoftware(cs);
+		if (usuario.getId() == null) {
+			em.persist(usuario);
+			for (ComponenteSoftware cs : componentes) {
+				Rol rol = new Rol(rolTipo);
+				rol.setUsuario(usuario);
+				rol.setComponenteSoftware(cs);
+				
+				em.persist(rol);
+			}
+		}else {
+			deleteAllRelacionRolUsuario(rolTipo, usuario.getId());
 			
-			em.merge(rol);
-			
-			//em.persist(rol);
-			//em.flush();
+			em.merge(usuario);
+			for (ComponenteSoftware cs : componentes) {
+				Rol rol = new Rol(rolTipo);
+				rol.setUsuario(usuario);
+				rol.setComponenteSoftware(cs);
+				
+				em.merge(rol);
+			}
 		}
-		
 	}
 	
 	
