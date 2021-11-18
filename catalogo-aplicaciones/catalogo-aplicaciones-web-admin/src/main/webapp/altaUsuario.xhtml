@@ -102,32 +102,38 @@
 		                </p:selectOneMenu>
 					</div>
 				</div>	
-				<div class="p-field p-grid" jsf:id="divRolComponente">
-				        <div id="divRolComponenteDesarrollador" jsf:rendered="#{usuarioController.rol eq '1'}">
-				        	<h:outputLabel value="Seleccione componentes" class="p-col-fixed" style="width: 200px" />
-					        <p:pickList id="pickListDesarrollador" value="#{usuarioController.lstComponentesDesarrollador}" var="componente"
-			                    itemValue="#{componente}" itemLabel="#{componente.identificador}" converter="#{componenteSoftwareConverter}">
-			                    
-			                    <p:ajax event="transfer" listener="#{usuarioController.onTransfer}"/>
-					        </p:pickList>
+				<div jsf:id="divRolComponente">
+						<div id="divRolComponenteDesarrollador" jsf:rendered="#{usuarioController.rol eq '1'}" class="p-field p-grid">
+				        	<h:outputLabel value="Seleccione componentes:" class="p-col-fixed" style="width: 200px" for="selRolComponente"/>
+				        	<div class="p-col">
+						        <p:pickList id="pickListDesarrollador" value="#{usuarioController.lstComponentesDesarrollador}" var="componente"
+				                    itemValue="#{componente}" itemLabel="#{componente.identificador}" converter="#{componenteSoftwareConverter}">
+				                    
+				                    <p:ajax event="transfer" listener="#{usuarioController.onTransfer}"/>
+						        </p:pickList>
+		               		</div> 
 		                </div>
 		                
-		                <div id="divRolComponenteOpExterno" jsf:rendered="#{usuarioController.rol eq '2'}">
-		                	<h:outputLabel value="Seleccione componentes" class="p-col-fixed" style="width: 200px" />
-					        <p:pickList id="pickListOpExterno" value="#{usuarioController.lstComponentesOpExterno}" var="componente"
-			                    itemValue="#{componente}" itemLabel="#{componente.identificador}" converter="#{componenteSoftwareConverter}">
-			                    
-			                    <p:ajax event="transfer" listener="#{usuarioController.onTransfer}"/>
-					        </p:pickList>
+		                <div id="divRolComponenteOpExterno" jsf:rendered="#{usuarioController.rol eq '2'}" class="p-field p-grid" >
+		                	<h:outputLabel value="Seleccione componentes:" class="p-col-fixed" style="width: 200px" for="selRolComponente"/>
+					        <div class="p-col">
+						        <p:pickList id="pickListOpExterno" value="#{usuarioController.lstComponentesOpExterno}" var="componente"
+				                    itemValue="#{componente}" itemLabel="#{componente.identificador}" converter="#{componenteSoftwareConverter}">
+				                    
+				                    <p:ajax event="transfer" listener="#{usuarioController.onTransfer}"/>
+						        </p:pickList>
+		                	</div>
 		                </div>
 		                
-		                <div id="divRolComponenteOpFuncional" jsf:rendered="#{usuarioController.rol eq '3'}">
-		                	<h:outputLabel value="Seleccione componentes" class="p-col-fixed" style="width: 200px" />
-					        <p:pickList id="pickListOpFuncional" value="#{usuarioController.lstComponentesOpFuncional}" var="componente"
-			                    itemValue="#{componente}" itemLabel="#{componente.identificador}" converter="#{componenteSoftwareConverter}">
-			                    
-			                    <p:ajax event="transfer" listener="#{usuarioController.onTransfer}"/>
-					        </p:pickList>
+		                <div id="divRolComponenteOpFuncional" jsf:rendered="#{usuarioController.rol eq '3'}" class="p-field p-grid" >
+		                	<h:outputLabel value="Seleccione componentes:" class="p-col-fixed" style="width: 200px" for="selRolComponente"/>
+						    <div class="p-col">    
+						        <p:pickList id="pickListOpFuncional" value="#{usuarioController.lstComponentesOpFuncional}" var="componente"
+				                    itemValue="#{componente}" itemLabel="#{componente.identificador}" converter="#{componenteSoftwareConverter}">
+				                    
+				                    <p:ajax event="transfer" listener="#{usuarioController.onTransfer}"/>
+						        </p:pickList>
+		                	</div>
 		                </div>
 				</div>
 				
