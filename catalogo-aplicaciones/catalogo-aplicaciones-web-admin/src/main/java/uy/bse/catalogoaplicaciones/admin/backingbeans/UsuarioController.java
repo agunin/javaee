@@ -95,8 +95,8 @@ public class UsuarioController implements Serializable {
 	 * 
 	 * @param p
 	 */
-	public void eliminar(Usuario p) {
-		usuarioService.delete(p);
+	public void eliminar(Usuario u) {
+		usuarioService.deleteUsuario(u);
 	}
 
 	public boolean isManaged(Long id) {

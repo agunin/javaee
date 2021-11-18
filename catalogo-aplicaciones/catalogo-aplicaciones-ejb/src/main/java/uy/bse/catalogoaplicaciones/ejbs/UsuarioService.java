@@ -55,7 +55,7 @@ public class UsuarioService extends AbstractService<Usuario, Long> {
 
 		query.executeUpdate();
 	}
-	
+
 	public void saveRolComponentes(List<ComponenteSoftware> componentes, RolTipo rolTipo, Usuario usuario) {
 		if (usuario.getId() == null) {
 			em.persist(usuario);
@@ -80,5 +80,12 @@ public class UsuarioService extends AbstractService<Usuario, Long> {
 		}
 	}
 	
+	public void deleteUsuario(Usuario usuario) {
+		deleteAllRelacionRolUsuario(RolTipo.DESARROLLADOR, usuario.getId());
+		deleteAllRelacionRolUsuario(RolTipo.OPERADOR_EXTERNO, usuario.getId());
+		deleteAllRelacionRolUsuario(RolTipo.OPERADOR_FUNCIONAL, usuario.getId());
+		
+		em.remove(em.contains(usuario) ? usuario : em.merge(usuario));
+	}
 	
 }
