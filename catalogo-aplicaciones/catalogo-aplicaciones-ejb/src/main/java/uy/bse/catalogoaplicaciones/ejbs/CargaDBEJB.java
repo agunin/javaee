@@ -24,6 +24,9 @@ public class CargaDBEJB {
 	public void init() {
 		System.out.println("************ PostConstruct SingletonEJB ************");
 
+		
+		/************************************************** Usuarios ****************************************************/
+		
 		Usuario u1 = new Usuario("Agustin", "Nin", "41059731","aguquimnin@gmail.com");
 		em.persist(u1);
 		em.flush();
@@ -32,7 +35,9 @@ public class CargaDBEJB {
 		em.persist(u2);
 		em.flush();
 		
-		Interface inter = new Interface("Interface", "Esta es la Interface", InterfaceTipo.PROCEDURE_SQL);
+		/****************************************************************************************************************/
+		/************************************************ Interfaces ****************************************************/
+		Interface inter = new Interface("InterfaceCubos", "Interface para publicar cubos", InterfaceTipo.PROCEDURE_SQL);
 		em.persist(inter);
 		em.flush();
 
@@ -69,7 +74,11 @@ public class CargaDBEJB {
 		em.persist(inter10);
 		em.flush();
 
-		Aplicacion app1 = new Aplicacion("pdi", "Esta es la Aplicacion1", AplicacionLenguaje.JAVA);
+		/****************************************************************************************************************/
+		/************************************************ Aplicaciones **************************************************/
+		
+		
+		Aplicacion app1 = new Aplicacion("ps", "Pentaho Server : Plataforma web para integracion de suite Pentaho", AplicacionLenguaje.PENTAHO);
 		em.persist(app1);
 		em.flush();
 
@@ -82,7 +91,7 @@ public class CargaDBEJB {
 		em.flush();
 		
 
-		Aplicacion app2 = new Aplicacion("Aplicacion2", "Esta es la Aplicacion2", AplicacionLenguaje.PHP);
+		Aplicacion app2 = new Aplicacion("pdi", "Pentaho Data Integration : Aplicacion para desarrollar ETLs", AplicacionLenguaje.PENTAHO);
 		em.persist(app2);
 		em.flush();
 
@@ -116,7 +125,7 @@ public class CargaDBEJB {
 		em.persist(app2);
 		em.flush();
 
-		Aplicacion app3 = new Aplicacion("Aplicacion3", "Esta es la Aplicacion3", AplicacionLenguaje.PENTAHO);
+		Aplicacion app3 = new Aplicacion("psw", "Pentaho Schema Workbench : Aplicacion para desarrollar Cubos", AplicacionLenguaje.PENTAHO);
 		em.persist(app3);
 		em.flush();
 
@@ -148,6 +157,9 @@ public class CargaDBEJB {
 		em.persist(app10);
 		em.flush();
 
+		/****************************************************************************************************************/
+		/************************************************** SolInfra ****************************************************/	
+		
 		Tienda tienda1 = new Tienda("Identificador_tienda_1",
 				"Descripción de la tienda 1 que debe ser minimo de sesenta caracteres.");
 		em.persist(tienda1);
@@ -181,7 +193,17 @@ public class CargaDBEJB {
 		em.persist(cluster2);
 		em.flush();
 		
+		/****************************************************************************************************************/
+		/************************************************** Ambiente ****************************************************/	
 		
+		Ambiente ambiente01 = new Ambiente(AmbienteTipo.PRODUCCION,8080,"192.198.1.1");
+		ambiente01.setAplicacion(app1);
+		ambiente01.setSolInfra(servidor1);
+		em.persist(ambiente01);
+		em.flush();
+		
+		/****************************************************************************************************************/
+		/****************************************************** Rol *****************************************************/	
 		
 		Rol u1_desarrollador_app1 = new Rol(RolTipo.DESARROLLADOR);
 		u1_desarrollador_app1.setUsuario(u1);
@@ -203,6 +225,9 @@ public class CargaDBEJB {
 		u1_funcional_app1.setComponenteSoftware(app2);
 		em.persist(u1_funcional_app1);
 		em.flush();*/
+		
+		/****************************************************************************************************************/
+		
 
 	}
 
