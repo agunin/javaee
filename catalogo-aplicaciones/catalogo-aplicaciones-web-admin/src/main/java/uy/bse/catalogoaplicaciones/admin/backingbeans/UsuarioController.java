@@ -64,16 +64,20 @@ public class UsuarioController implements Serializable {
 	 * @return String con la regla de navegacion
 	 */
 	public String crearUsuario() {
-		if (lstComponentesDesarrollador != null && lstComponentesDesarrollador.getTarget() != null) 
-			usuarioService.saveRolComponentes(lstComponentesDesarrollador.getTarget(), RolTipo.DESARROLLADOR, usuario);
-			
-		if (lstComponentesOpExterno != null && lstComponentesOpExterno.getTarget() != null)
-			usuarioService.saveRolComponentes(lstComponentesOpExterno.getTarget(), RolTipo.OPERADOR_EXTERNO, usuario);
+		if (lstComponentesDesarrollador == null && lstComponentesOpExterno == null && lstComponentesOpFuncional == null) {
+			usuarioService.update(usuario);
+		} else {
+			if (lstComponentesDesarrollador != null && lstComponentesDesarrollador.getTarget() != null) 
+				usuarioService.saveRolComponentes(lstComponentesDesarrollador.getTarget(), RolTipo.DESARROLLADOR, usuario);
+				
+			if (lstComponentesOpExterno != null && lstComponentesOpExterno.getTarget() != null)
+				usuarioService.saveRolComponentes(lstComponentesOpExterno.getTarget(), RolTipo.OPERADOR_EXTERNO, usuario);
 
-		if (lstComponentesOpFuncional != null && lstComponentesOpFuncional.getTarget() != null)
-			usuarioService.saveRolComponentes(lstComponentesOpFuncional.getTarget(), RolTipo.OPERADOR_FUNCIONAL,
-					usuario);
-
+			if (lstComponentesOpFuncional != null && lstComponentesOpFuncional.getTarget() != null)
+				usuarioService.saveRolComponentes(lstComponentesOpFuncional.getTarget(), RolTipo.OPERADOR_FUNCIONAL,
+						usuario);
+		}
+		
 		return "usuarios.xhtml?faces-redirect=true";
 	}
 

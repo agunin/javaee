@@ -32,18 +32,11 @@ public class CargaDBEJB {
 		em.persist(u2);
 		em.flush();
 		
-		
-		
-
-		
-		
-		
-
-		Interface inter = new Interface("Interface1", "Esta es la Interface", InterfaceTipo.PROCEDURE_SQL);
+		Interface inter = new Interface("Interface", "Esta es la Interface", InterfaceTipo.PROCEDURE_SQL);
 		em.persist(inter);
 		em.flush();
 
-		Interface inter1 = new Interface("Interface2", "Esta es la Interface1", InterfaceTipo.PROCEDURE_SQL);
+		Interface inter1 = new Interface("Interface1", "Esta es la Interface1", InterfaceTipo.PROCEDURE_SQL);
 		em.persist(inter1);
 		em.flush();
 
@@ -198,7 +191,7 @@ public class CargaDBEJB {
 		em.flush();
 		
 	
-		Rol u2_desarrollador_app1 = new Rol(RolTipo.DESARROLLADOR);
+		/*Rol u2_desarrollador_app1 = new Rol(RolTipo.DESARROLLADOR);
 		u2_desarrollador_app1.setUsuario(u2);
 		u2_desarrollador_app1.setComponenteSoftware(app1);
 		//desarrollador.addComponenteSoftware(app2);
@@ -209,7 +202,7 @@ public class CargaDBEJB {
 		u1_funcional_app1.setUsuario(u1);
 		u1_funcional_app1.setComponenteSoftware(app2);
 		em.persist(u1_funcional_app1);
-		em.flush();
+		em.flush();*/
 
 	}
 

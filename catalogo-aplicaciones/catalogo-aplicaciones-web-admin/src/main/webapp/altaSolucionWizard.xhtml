@@ -57,20 +57,21 @@
 		        <p:wizard flowListener="#{solucionWizard.onFlowProcess}" nextLabel="Siguiente" backLabel="Anterior">
 		            <p:tab id="solucion" title="Solución">
 		                <p:panel header="Solución Detalle">
-		                    <p:messages/>
+		                    <!--  p:messages/-->
 		                    <h:panelGrid columns="1" layout="flex" columnClasses="label, value">
 		                    
 		              
 		                        <h:outputText value="Identifiacador: *"/>
-		                        <p:inputText value="#{solucionWizard.solucion.identificador}" required="true" label="Identificador" size="58"/>
-								<h:outputText id="display1" class="p-d-block" />
+		                        <p:inputText id="solIdentificador" value="#{solucionWizard.solucion.identificador}" required="true" label="Identificador" size="58"/>
+								<!-- h:outputText id="display1" class="p-d-block" / -->
+								<h:message id="msgSolIdentificador" for="solIdentificador" errorClass="err" warnClass="warn" infoClass="info" />
 								
 								
 								
 		                        <h:outputText value="Descripción: *"/>
-		                        <p:inputTextarea value="#{solucionWizard.solucion.descripcion}" required="true" label="Descripción" rows="4" cols="60" autoResize="false"/>
-        						<h:outputText id="display2" class="p-d-block" />
-		                        
+		                        <p:inputTextarea id="solDescripcion" value="#{solucionWizard.solucion.descripcion}" required="true" label="Descripción" rows="4" cols="60" autoResize="false"/>
+        						<!-- h:outputText id="display2" class="p-d-block" / -->
+		                        <h:message id="msgSolDescripcion" for="solDescripcion" errorClass="err" warnClass="warn" infoClass="info" />
 
 		                    </h:panelGrid>
 		                </p:panel>
