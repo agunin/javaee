@@ -28,6 +28,7 @@ public class Solucion extends BaseEntity<Long> {
 	private Long id;
 
 	@NotNull
+	@Column(unique=true)
 	private String identificador;
 
 	@Lob

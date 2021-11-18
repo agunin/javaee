@@ -36,6 +36,7 @@ public abstract class ComponenteSoftware extends BaseEntity<Long> {
 
 
 	@NotNull
+	@Column(unique=true)
 	private String identificador;
 
 	@Lob

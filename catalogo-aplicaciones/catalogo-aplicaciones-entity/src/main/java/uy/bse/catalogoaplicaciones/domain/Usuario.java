@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Email;
 
 
 
@@ -34,21 +35,22 @@ public class Usuario extends BaseEntity<Long> {
 	private String apellido;
 	
 	@NotNull
+	@Column(unique=true)
 	private String documentoIdentidad;
 	
 	//validator format mail
+	@NotNull
+	@Email(message = "Email debe ser valido")
 	private String email;
 	
 
 
 	public Usuario() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Usuario(String nombre, String apellido, String documentoIdentidad, String email) {
 		super();
-		//this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.documentoIdentidad = documentoIdentidad;
