@@ -89,4 +89,5 @@ public class Solucion extends BaseEntity<Long> {
 		this.componentesSoftware.add(componentesSoftware);
 	}
 
+	
 }

@@ -70,5 +70,6 @@ public abstract class ComponenteSoftware extends BaseEntity<Long> {
 		this.descripcion = descripcion;
 	}
 	
+	
 
 }
