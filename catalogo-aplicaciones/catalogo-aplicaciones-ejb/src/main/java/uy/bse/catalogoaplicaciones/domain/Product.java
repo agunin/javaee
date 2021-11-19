@@ -14,6 +14,7 @@ public class Product implements Serializable {
 	private String descripcion;
 
 	private List<ComponenteSoftware> componentes;
+	private List<Rol> roles;
 
 	public Product() {
 		componentes = new ArrayList<ComponenteSoftware>();
@@ -70,6 +71,14 @@ public class Product implements Serializable {
 
 	public void setComponentes(List<ComponenteSoftware> componentes) {
 		this.componentes = componentes;
+	}
+
+	public List<Rol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
 	}
 
 }

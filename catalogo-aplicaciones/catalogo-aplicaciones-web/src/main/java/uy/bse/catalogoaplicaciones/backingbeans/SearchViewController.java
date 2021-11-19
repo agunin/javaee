@@ -96,6 +96,7 @@ public class SearchViewController implements Serializable {
 			pfe.setTipoComponente(productBackend.getTipoComponente());
 			pfe.setRoot3(null);
 			pfe.setComponentes(productBackend.getComponentes());
+			pfe.setRoles(productBackend.getRoles());
 			products.add(pfe);
 		}
 		construirTreeNodeParaSolucion(products);

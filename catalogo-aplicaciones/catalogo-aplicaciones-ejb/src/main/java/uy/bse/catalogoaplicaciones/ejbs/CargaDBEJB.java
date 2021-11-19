@@ -42,6 +42,13 @@ public class CargaDBEJB {
 		em.persist(u4);
 		em.flush();
 		
+		Usuario u5 = new Usuario("Gonzalo", "Ramos", "4.176.123-2","gonzalo.ramos@datalogic.com");
+		em.persist(u5);
+		em.flush();
+		
+		Usuario u6 = new Usuario("Carla", "Gimenez", "3.976.523-8","carla.gimenez@ibm.com");
+		em.persist(u6);
+		em.flush();
 		/****************************************************************************************************************/
 		/************************************************ Interfaces ****************************************************/
 		Interface inter = new Interface("ICubos", "Interface para publicar cubos.", InterfaceTipo.PROCEDURE_SQL);
@@ -74,11 +81,26 @@ public class CargaDBEJB {
 		Interface inter3 = new Interface("IDatalogicGIA", "Interface externa provista por Datalogic para la gestión de rrhh.", InterfaceTipo.SOAP);
 		em.persist(inter3);
 		em.flush();
+		Rol rol_inter3 = new Rol(RolTipo.OPERADOR_EXTERNO);
+		rol_inter3.setUsuario(u5);
+		rol_inter3.setComponenteSoftware(inter3);
+		em.persist(rol_inter3);
+		em.flush();
 		Interface inter4 = new Interface("IDatalogicDGI", "Interface externa provista por Datalogic para la gestión con dgi.", InterfaceTipo.SOAP);
 		em.persist(inter4);
 		em.flush();
+		Rol rol_inter4 = new Rol(RolTipo.OPERADOR_EXTERNO);
+		rol_inter4.setUsuario(u5);
+		rol_inter4.setComponenteSoftware(inter4);
+		em.persist(rol_inter4);
+		em.flush();
 		Interface inter6 = new Interface("IBMP", "Interface externa provista por IBM.", InterfaceTipo.SOAP);
 		em.persist(inter6);
+		em.flush();
+		Rol rol_inter6 = new Rol(RolTipo.OPERADOR_EXTERNO);
+		rol_inter6.setUsuario(u6);
+		rol_inter6.setComponenteSoftware(inter6);
+		em.persist(rol_inter6);
 		em.flush();
 		
 		Interface inter5 = new Interface("ISiniestros", "Interface que provee los métodos necesarios para el proceso del siniestro.", InterfaceTipo.REST);
@@ -201,7 +223,7 @@ public class CargaDBEJB {
 		
 		/****************************************************************************************************************/
 		/************************************************** Solucion ****************************************************/	
-		Solucion sol = new Solucion("SolCentralBanco", "Solucion core para gestion de cada accion del banco.");
+		Solucion sol = new Solucion("SolCentralBanco", "Solucion core para gestionar cada accion del banco.");
 		em.persist(sol);
 		em.flush();
 		sol.addComponentesSoftware(app1);

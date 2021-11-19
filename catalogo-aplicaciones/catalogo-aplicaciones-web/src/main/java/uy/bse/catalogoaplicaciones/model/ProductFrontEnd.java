@@ -8,6 +8,7 @@ import java.util.Objects;
 import org.primefaces.model.TreeNode;
 
 import uy.bse.catalogoaplicaciones.domain.ComponenteSoftware;
+import uy.bse.catalogoaplicaciones.domain.Rol;
 
 public class ProductFrontEnd implements Serializable {
 
@@ -19,6 +20,7 @@ public class ProductFrontEnd implements Serializable {
 	private String descripcion;
 
 	private List<ComponenteSoftware> componentes;
+	private List<Rol> roles;
 
 	private TreeNode root3;
 
@@ -103,6 +105,14 @@ public class ProductFrontEnd implements Serializable {
 
 	public void setRoot3(TreeNode root3) {
 		this.root3 = root3;
+	}
+
+	public List<Rol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
 	}
 
 }

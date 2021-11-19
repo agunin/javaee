@@ -14,7 +14,6 @@
         <class>uy.bse.catalogoaplicaciones.domain.Servidor</class>
         <class>uy.bse.catalogoaplicaciones.domain.Cluster</class>
         <class>uy.bse.catalogoaplicaciones.domain.Cloud</class>
-        <class>uy.bse.catalogoaplicaciones.domain.Ambiente</class>
         <class>uy.bse.catalogoaplicaciones.domain.SolInfra</class>
         <class>uy.bse.catalogoaplicaciones.domain.ComponenteSoftware</class>
         <class>uy.bse.catalogoaplicaciones.domain.Aplicacion</class>

@@ -8,11 +8,13 @@ import java.util.Set;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import uy.bse.catalogoaplicaciones.domain.Aplicacion;
 import uy.bse.catalogoaplicaciones.domain.ComponenteSoftware;
 import uy.bse.catalogoaplicaciones.domain.Interface;
 import uy.bse.catalogoaplicaciones.domain.Product;
+import uy.bse.catalogoaplicaciones.domain.Rol;
 import uy.bse.catalogoaplicaciones.domain.Solucion;
 
 /**
@@ -92,6 +94,12 @@ public class SearchViewService {
 				componentes.add(p);
 			}
 		}
+		
+		for (Product product : componentes) {
+			for (ComponenteSoftware cs : product.getComponentes()) {
+				product.setRoles(getAllRolComponenteSofware(cs.getId()));
+			}
+		}
 
 		return componentes;
 	}
@@ -151,6 +159,15 @@ public class SearchViewService {
 				}
 			}
 		}
+	}
+	
+	private List<Rol> getAllRolComponenteSofware(Long idComponente) {
+		Query query = em.createQuery("SELECT r FROM Rol r WHERE r.componenteSoftware.id = ?1");
+
+		query.setParameter(1, idComponente);
+		List<Rol> result = query.getResultList();
+		
+		return result;
 	}
 
 }

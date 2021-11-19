@@ -91,7 +91,7 @@
 				
 				       
 						<p:dialog header="Detalle del componente" showEffect="fade" modal="true"
-		                  widgetVar="manageProductDialog" responsive="false"  positionType="absolute" style="max-height:900px;overflow:auto">
+		                  widgetVar="manageProductDialog" responsive="false" positionType="absolute" style="max-height:900px;overflow:auto">
 				            <p:outputPanel id="manage-product-content" class="ui-fluid">
 				                <p:outputPanel rendered="#{not empty searchViewController.selectedProduct}">
 				                	<div id="solucion" jsf:rendered="#{searchViewController.selectedProduct.tipoComponente eq 'SOLUCION'}">
@@ -119,6 +119,20 @@
 												</p:treeNode>
 											</p:tree>
 										</p:panel>
+										<p:dataTable id="rolesAsociadosSol" style="width:580px;" var="rol"  rows="5" paginator="true"
+                    								paginatorPosition="bottom" value="#{searchViewController.selectedProduct.roles}">
+									            <f:facet name="header">Roles asociados</f:facet>
+									
+									            <p:column headerText="Tipo">
+									                <h:outputText value="#{rol.rolTipo.toString()}" />
+									            </p:column>
+									            <p:column headerText="Nombre">
+									                <h:outputText value="#{rol.usuario.nombre}" />
+									            </p:column>
+									            <p:column headerText="Apellido">
+									                <h:outputText value="#{rol.usuario.apellido}" />
+									            </p:column>
+								        </p:dataTable>
 				                	</div>
 
 
@@ -135,7 +149,7 @@
 					                        <p:outputLabel for="descripcionApp">Descripción</p:outputLabel>
 					                        <p:inputTextarea id="descripcionApp" value="#{searchViewController.selectedProduct.descripcion}" readonly="true" rows="4" cols="60" autoResize="true"/>
 					                    </div>
-				                    	<p:dataTable id="proveeInterface" style="width:560px;" var="interface"  rows="5" paginator="true"
+				                    	<p:dataTable id="proveeInterface" style="width:580px;" var="interface"  rows="5" paginator="true"
                     								paginatorPosition="bottom" value="#{searchViewController.selectedProduct.componentes.get(0).proveeInterface}">
 									            <f:facet name="header">Interfaces que provee</f:facet>
 									
@@ -149,7 +163,7 @@
 									                <h:outputText value="#{interface.descripcion}" />
 									            </p:column>
 								        </p:dataTable>
-								        <p:dataTable id="consumeInterface" style="width:560px;" var="interface"  rows="5" paginator="true"
+								        <p:dataTable id="consumeInterface" style="width:580px;" var="interface"  rows="5" paginator="true"
                     								paginatorPosition="bottom" value="#{searchViewController.selectedProduct.componentes.get(0).consumeInterface}">
 									            <f:facet name="header">Interfaces que consume</f:facet>
 									
@@ -161,6 +175,20 @@
 									            </p:column>
 									            <p:column headerText="Descripción">
 									                <h:outputText value="#{interface.descripcion}" />
+									            </p:column>
+								        </p:dataTable>
+								        <p:dataTable id="rolesAsociadosApp" style="width:580px;" var="rol"  rows="5" paginator="true"
+                    								paginatorPosition="bottom" value="#{searchViewController.selectedProduct.roles}">
+									            <f:facet name="header">Roles asociados</f:facet>
+									
+									            <p:column headerText="Tipo">
+									                <h:outputText value="#{rol.rolTipo.toString()}" />
+									            </p:column>
+									            <p:column headerText="Nombre">
+									                <h:outputText value="#{rol.usuario.nombre}" />
+									            </p:column>
+									            <p:column headerText="Apellido">
+									                <h:outputText value="#{rol.usuario.apellido}" />
 									            </p:column>
 								        </p:dataTable>
 				                	</div>
@@ -179,6 +207,20 @@
 					                        <p:outputLabel for="descripcionInter">Descripción</p:outputLabel>
 					                        <p:inputTextarea id="descripcionInter" value="#{searchViewController.selectedProduct.descripcion}" readonly="true" rows="4" cols="60" autoResize="true"/>
 					                    </div>
+					                    <p:dataTable id="rolesAsociadosInter" style="width:580px;" var="rol"  rows="5" paginator="true"
+                    								paginatorPosition="bottom" value="#{searchViewController.selectedProduct.roles}">
+									            <f:facet name="header">Roles asociados</f:facet>
+									
+									            <p:column headerText="Tipo">
+									                <h:outputText value="#{rol.rolTipo.toString()}" />
+									            </p:column>
+									            <p:column headerText="Nombre">
+									                <h:outputText value="#{rol.usuario.nombre}" />
+									            </p:column>
+									            <p:column headerText="Apellido">
+									                <h:outputText value="#{rol.usuario.apellido}" />
+									            </p:column>
+								        </p:dataTable>
 				                	</div>
 				                	
 		 						</p:outputPanel>
