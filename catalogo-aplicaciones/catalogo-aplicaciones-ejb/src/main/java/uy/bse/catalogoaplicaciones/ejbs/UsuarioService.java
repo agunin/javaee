@@ -96,6 +96,18 @@ public class UsuarioService extends AbstractService<Usuario, Long> {
 		List<ComponenteSoftware> result = query.getResultList();
 		return result;
 	}
+	
+	
+	public List<ComponenteSoftware> getComponenteSofwareByUserId(Long id, RolTipo rol) {
+
+		Query query = em.createQuery("SELECT c FROM Rol r " + "JOIN r.usuario u " + "JOIN r.componenteSoftware c "
+				+ "WHERE u.id = ?1 AND r.rolTipo = ?2");
+
+		query.setParameter(1, id);
+		query.setParameter(2, rol);
+		List<ComponenteSoftware> result = query.getResultList();
+		return result;
+	}
 
 	private void deleteAllRelacionRolUsuario(RolTipo rolTipo, Long idUsuario) {
 		Query query = em.createQuery("DELETE FROM Rol r WHERE r.rolTipo = ?1 AND r.usuario.id = ?2");

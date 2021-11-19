@@ -91,11 +91,9 @@ public class UsuarioController implements Serializable {
 
 			return "usuarios.xhtml?faces-redirect=true";
 		} catch (Exception ex) {
-			FacesContext.getCurrentInstance().addMessage(
-	                null,
-	                new FacesMessage(FacesMessage.SEVERITY_ERROR,
-	                        ex.getMessage(), ex.getMessage()));
-			
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(), ex.getMessage()));
+
 			return null;
 		}
 	}
@@ -136,8 +134,12 @@ public class UsuarioController implements Serializable {
 
 	public DualListModel<ComponenteSoftware> getLstComponentesDesarrollador() {
 		if (lstComponentesDesarrollador == null) {
-			List<ComponenteSoftware> componentesTarget = usuarioService
-					.getComponenteSofwareByUserCi(usuario.getDocumentoIdentidad(), RolTipo.DESARROLLADOR);
+
+			List<ComponenteSoftware> componentesTarget = new ArrayList<ComponenteSoftware>();
+			if (usuario.getId() != null) {
+				componentesTarget = usuarioService.getComponenteSofwareByUserId(usuario.getId(), RolTipo.DESARROLLADOR);
+			}
+
 			List<ComponenteSoftware> componentesSource = getSourceComponentes(componentesTarget);
 
 			lstComponentesDesarrollador = new DualListModel<>(componentesSource, componentesTarget);
@@ -152,8 +154,12 @@ public class UsuarioController implements Serializable {
 
 	public DualListModel<ComponenteSoftware> getLstComponentesOpFuncional() {
 		if (lstComponentesOpFuncional == null) {
-			List<ComponenteSoftware> componentesTarget = usuarioService
-					.getComponenteSofwareByUserCi(usuario.getDocumentoIdentidad(), RolTipo.OPERADOR_FUNCIONAL);
+			List<ComponenteSoftware> componentesTarget = new ArrayList<ComponenteSoftware>();
+			if (usuario.getId() != null) {
+				componentesTarget = usuarioService.getComponenteSofwareByUserId(usuario.getId(),
+						RolTipo.OPERADOR_FUNCIONAL);
+			}
+
 			List<ComponenteSoftware> componentesSource = getSourceComponentes(componentesTarget);
 			lstComponentesOpFuncional = new DualListModel<>(componentesSource, componentesTarget);
 		}
@@ -167,8 +173,12 @@ public class UsuarioController implements Serializable {
 
 	public DualListModel<ComponenteSoftware> getLstComponentesOpExterno() {
 		if (lstComponentesOpExterno == null) {
-			List<ComponenteSoftware> componentesTarget = usuarioService
-					.getComponenteSofwareByUserCi(usuario.getDocumentoIdentidad(), RolTipo.OPERADOR_EXTERNO);
+			List<ComponenteSoftware> componentesTarget = new ArrayList<ComponenteSoftware>();
+			if (usuario.getId() != null) {
+				componentesTarget = usuarioService.getComponenteSofwareByUserId(usuario.getId(),
+						RolTipo.OPERADOR_EXTERNO);
+			}
+
 			List<ComponenteSoftware> componentesSource = getSourceComponentes(componentesTarget);
 
 			lstComponentesOpExterno = new DualListModel<>(componentesSource, componentesTarget);
