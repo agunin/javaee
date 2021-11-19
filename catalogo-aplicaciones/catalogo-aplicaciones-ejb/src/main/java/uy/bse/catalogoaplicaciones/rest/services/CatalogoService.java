@@ -7,12 +7,15 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.ServerErrorException;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
@@ -25,6 +28,8 @@ import uy.bse.catalogoaplicaciones.domain.RolTipo;
 import uy.bse.catalogoaplicaciones.domain.Usuario;
 import uy.bse.catalogoaplicaciones.ejbs.AplicacionService;
 import uy.bse.catalogoaplicaciones.ejbs.UsuarioService;
+import uy.bse.catalogoaplicaciones.exception.CiDuplicadaException;
+import uy.bse.catalogoaplicaciones.exception.EmailDuplicadoException;
 
 
 
@@ -65,11 +70,25 @@ public class CatalogoService implements ICatalogoRest {
 			throw new BadRequestException();
 		}
 				
-		usuarioService.create(usuario);
-		URI usuarioUri = uriInfo.getAbsolutePathBuilder().path(usuario.getDocumentoIdentidad()).build();
-		return Response.created(usuarioUri).build();
-		
-	}
+		try{
+			
+			usuarioService.actualizar(usuario);
+			URI usuarioUri = uriInfo.getAbsolutePathBuilder().path(usuario.getDocumentoIdentidad()).build();
+			return Response.created(usuarioUri).build();
+			
+        }catch(CiDuplicadaException e){
+        	
+        	throw new BadRequestException("Documento duplicado");
+        	
+		}catch(EmailDuplicadoException e){
+			
+			throw new BadRequestException("Email duplicado");
+			
+		}catch(Exception e){
+			
+		 	throw new WebApplicationException();	
+		 	
+		}
 
-	 
+	}
 }

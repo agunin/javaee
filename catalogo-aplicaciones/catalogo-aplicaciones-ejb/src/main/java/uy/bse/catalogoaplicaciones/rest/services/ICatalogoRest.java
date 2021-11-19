@@ -12,6 +12,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import uy.bse.catalogoaplicaciones.domain.Usuario;
+import uy.bse.catalogoaplicaciones.exception.CiDuplicadaException;
+import uy.bse.catalogoaplicaciones.exception.EmailDuplicadoException;
 
 
 
@@ -35,4 +37,5 @@ public interface ICatalogoRest {
 	//@Path("/usuario")
 	Response createUsuario(Usuario usuario);
 
+	
 }
