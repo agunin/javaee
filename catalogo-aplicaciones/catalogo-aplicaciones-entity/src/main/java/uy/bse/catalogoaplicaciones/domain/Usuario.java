@@ -1,22 +1,12 @@
 package uy.bse.catalogoaplicaciones.domain;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Email;
-
-
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Usuario extends BaseEntity<Long> {
@@ -27,23 +17,21 @@ public class Usuario extends BaseEntity<Long> {
 	@Column(name = "idUsuario")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
 	private String nombre;
-	
+
 	@NotNull
 	private String apellido;
-	
-	@NotNull
-	@Column(unique=true)
-	private String documentoIdentidad;
-	
-	//validator format mail
-	@NotNull
-	@Email(message = "Email debe ser valido")
-	private String email;
-	
 
+	@NotNull
+	@Column(unique = true)
+	private String documentoIdentidad;
+
+	@NotNull
+	@Email(message = " Email debe ser válido")
+	@Column(unique = true)
+	private String email;
 
 	public Usuario() {
 		super();
@@ -96,6 +84,5 @@ public class Usuario extends BaseEntity<Long> {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
+
 }

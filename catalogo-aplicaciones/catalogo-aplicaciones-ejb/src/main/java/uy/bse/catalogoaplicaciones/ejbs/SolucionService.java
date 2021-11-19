@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import uy.bse.catalogoaplicaciones.domain.ComponenteSoftware;
 import uy.bse.catalogoaplicaciones.domain.RolTipo;
 import uy.bse.catalogoaplicaciones.domain.Solucion;
+import uy.bse.catalogoaplicaciones.domain.Usuario;
 
 /**
  * Servicio EJB para la entity Solucion
@@ -38,6 +39,7 @@ public class SolucionService extends AbstractService<Solucion, Long>{
 		List<ComponenteSoftware> result = query.getResultList();
 		return result;
 	}
+
 	
 	public ComponenteSoftware findComponenteById(Long id){
 		

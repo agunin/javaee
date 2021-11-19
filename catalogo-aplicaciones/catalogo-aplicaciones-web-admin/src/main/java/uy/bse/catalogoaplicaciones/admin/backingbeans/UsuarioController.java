@@ -5,9 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
 
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.TransferEvent;
 import org.primefaces.model.DualListModel;
 
@@ -16,6 +20,8 @@ import uy.bse.catalogoaplicaciones.domain.RolTipo;
 import uy.bse.catalogoaplicaciones.domain.Usuario;
 import uy.bse.catalogoaplicaciones.ejbs.SolucionService;
 import uy.bse.catalogoaplicaciones.ejbs.UsuarioService;
+import uy.bse.catalogoaplicaciones.exception.CiDuplicadaException;
+import uy.bse.catalogoaplicaciones.exception.EmailDuplicadoException;
 
 @Named("usuarioController")
 @ViewScoped
@@ -64,21 +70,34 @@ public class UsuarioController implements Serializable {
 	 * @return String con la regla de navegacion
 	 */
 	public String crearUsuario() {
-		if (lstComponentesDesarrollador == null && lstComponentesOpExterno == null && lstComponentesOpFuncional == null) {
-			usuarioService.update(usuario);
-		} else {
-			if (lstComponentesDesarrollador != null && lstComponentesDesarrollador.getTarget() != null) 
-				usuarioService.saveRolComponentes(lstComponentesDesarrollador.getTarget(), RolTipo.DESARROLLADOR, usuario);
-				
-			if (lstComponentesOpExterno != null && lstComponentesOpExterno.getTarget() != null)
-				usuarioService.saveRolComponentes(lstComponentesOpExterno.getTarget(), RolTipo.OPERADOR_EXTERNO, usuario);
+		try {
+			if (lstComponentesDesarrollador == null && lstComponentesOpExterno == null
+					&& lstComponentesOpFuncional == null) {
+				usuarioService.actualizar(usuario);
+			} else {
+				if (lstComponentesDesarrollador != null && lstComponentesDesarrollador.getTarget() != null)
+					usuarioService.saveRolComponentes(lstComponentesDesarrollador.getTarget(), RolTipo.DESARROLLADOR,
+							usuario);
 
-			if (lstComponentesOpFuncional != null && lstComponentesOpFuncional.getTarget() != null)
-				usuarioService.saveRolComponentes(lstComponentesOpFuncional.getTarget(), RolTipo.OPERADOR_FUNCIONAL,
-						usuario);
+				if (lstComponentesOpExterno != null && lstComponentesOpExterno.getTarget() != null)
+					usuarioService.saveRolComponentes(lstComponentesOpExterno.getTarget(), RolTipo.OPERADOR_EXTERNO,
+							usuario);
+
+				if (lstComponentesOpFuncional != null && lstComponentesOpFuncional.getTarget() != null)
+					usuarioService.saveRolComponentes(lstComponentesOpFuncional.getTarget(), RolTipo.OPERADOR_FUNCIONAL,
+							usuario);
+
+			}
+
+			return "usuarios.xhtml?faces-redirect=true";
+		} catch (Exception ex) {
+			FacesContext.getCurrentInstance().addMessage(
+	                null,
+	                new FacesMessage(FacesMessage.SEVERITY_ERROR,
+	                        ex.getMessage(), ex.getMessage()));
+			
+			return null;
 		}
-		
-		return "usuarios.xhtml?faces-redirect=true";
 	}
 
 	/**
@@ -180,49 +199,7 @@ public class UsuarioController implements Serializable {
 		return false;
 	}
 
-	public void onTransfer(TransferEvent event) {}
-	
-	/*public void onTransfer(TransferEvent event) {
-		if (event.isAdd()) { // agrega en target y quita en source
-			if (rol.equals("1")) { // desarrollador
-				addTargetRemoveSource(lstComponentesDesarrollador, event.getItems());
-			} else if (rol.equals("2")) { // OpExterno
-				addTargetRemoveSource(lstComponentesOpExterno, event.getItems());
-			} else { // OpFuncional
-				addTargetRemoveSource(lstComponentesOpFuncional, event.getItems());
-			}
-		}
-
-		if (event.isRemove()) { // agrega en source y quita en target
-			if (rol.equals("1")) { // desarrollador
-				addSourceRemoveTarget(lstComponentesDesarrollador, event.getItems());
-			} else if (rol.equals("2")) { // OpExterno
-				addSourceRemoveTarget(lstComponentesOpExterno, event.getItems());
-			} else { // OpFuncional
-				addSourceRemoveTarget(lstComponentesOpFuncional, event.getItems());
-			}
-		}
-	}*/
-
-	private void addTargetRemoveSource(DualListModel<ComponenteSoftware> lstComponentes, List<?> items) {
-		List<ComponenteSoftware> componentesTarget = lstComponentes.getTarget();
-		List<ComponenteSoftware> componentesSource = lstComponentes.getSource();
-		
-		for (Object obj : items) {
-			ComponenteSoftware cs = (ComponenteSoftware)obj;
-			componentesTarget.add(cs);
-			componentesSource.remove(cs);
-		}
+	public void onTransfer(TransferEvent event) {
 	}
-	
-	private void addSourceRemoveTarget(DualListModel<ComponenteSoftware> lstComponentes, List<?> items) {
-		List<ComponenteSoftware> componentesTarget = lstComponentes.getTarget();
-		List<ComponenteSoftware> componentesSource = lstComponentes.getSource();
-		
-		for (Object obj : items) {
-			ComponenteSoftware cs = (ComponenteSoftware)obj;
-			componentesSource.add(cs);
-			componentesTarget.remove(cs);
-		}
-	}
+
 }
