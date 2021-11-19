@@ -2,7 +2,7 @@ Agustín Nin 4.105.973-1
 Luciana Canales 3.476.853-5
 
 Carga de datos:
-El proyecto cuenta con el EJB Sinlgeton catalogo-aplicaciones-ejb/uy.bse.catalogoaplicaciones.ejbs.CargaDBEJB encargado de dar de alta un juego de datos inciail.
+El proyecto cuenta con el EJB Sinlgeton catalogo-aplicaciones-ejb/uy.bse.catalogoaplicaciones.ejbs.CargaDBEJB encargado de dar de alta un juego de datos inicial.
 
 Frontend:
 http://localhost:8080/catalogo-aplicaciones-web
