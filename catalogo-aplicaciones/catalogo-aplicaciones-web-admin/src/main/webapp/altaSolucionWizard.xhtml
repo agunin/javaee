@@ -62,16 +62,20 @@
 		                    
 		              
 		                        <h:outputText value="Identifiacador: *"/>
-		                        <p:inputText id="solIdentificador" value="#{solucionWizard.solucion.identificador}" required="true" label="Identificador" size="58"/>
-								<!-- h:outputText id="display1" class="p-d-block" / -->
-								<h:message id="msgSolIdentificador" for="solIdentificador" errorClass="err" warnClass="warn" infoClass="info" />
+		                        <p:inputText id="solIdentificador" value="#{solucionWizard.solucion.identificador}" 
+		                        	required="true" label="Identificador" size="58">
+		                        	<p:ajax event="blur" process="@this" update="msgSolIdentificador" />
+		                        </p:inputText>
+								<p:message id="msgSolIdentificador" for="solIdentificador" errorClass="err" warnClass="warn" infoClass="info" />
 								
 								
 								
 		                        <h:outputText value="Descripción: *"/>
-		                        <p:inputTextarea id="solDescripcion" value="#{solucionWizard.solucion.descripcion}" required="true" label="Descripción" rows="4" cols="60" autoResize="false"/>
-        						<!-- h:outputText id="display2" class="p-d-block" / -->
-		                        <h:message id="msgSolDescripcion" for="solDescripcion" errorClass="err" warnClass="warn" infoClass="info" />
+		                        <p:inputTextarea id="solDescripcion" value="#{solucionWizard.solucion.descripcion}" 
+		                        	required="true" label="Descripción" rows="4" cols="60" autoResize="false">
+		                        	<p:ajax event="blur" process="@this" update="msgSolDescripcion" />
+		                         </p:inputTextarea>
+        						<p:message id="msgSolDescripcion" for="solDescripcion" errorClass="err" warnClass="warn" infoClass="info" />
 
 		                    </h:panelGrid>
 		                </p:panel>
