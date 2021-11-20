@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "8073e070-67e5-48b9-9b4b-e4a3b194a2db",
+		"name": "Catalogo-Aplicaciones",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST_Usuario_JSON_Ok",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nombre\": \"Agustin\",\n  \"apellido\": \"Nin\",\n  \"documentoIdentidad\": \"41059731\",\n  \"email\": \"aguquimnin@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/catalogo-aplicaciones-web-admin/rest/catalogo/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"catalogo-aplicaciones-web-admin",
+						"rest",
+						"catalogo",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST_Usuario_JSON_DocDuplicada",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nombre\": \"Joaquin\",\n  \"apellido\": \"Nin\",\n  \"documentoIdentidad\": \"4.105.973-1\",\n  \"email\": \"aguquimnin1@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/catalogo-aplicaciones-web-admin/rest/catalogo/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"catalogo-aplicaciones-web-admin",
+						"rest",
+						"catalogo",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST_Usuario_JSON_EmailDuplicada",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nombre\": \"Joaquin\",\n  \"apellido\": \"Nin\",\n  \"documentoIdentidad\": \"3.109.515.9\",\n  \"email\": \"aguquimnin@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/catalogo-aplicaciones-web-admin/rest/catalogo/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"catalogo-aplicaciones-web-admin",
+						"rest",
+						"catalogo",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET_InterfacesByAplicationId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/catalogo-aplicaciones-web-admin/rest/catalogo/aplicacion/interfacesprovee/pdi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"catalogo-aplicaciones-web-admin",
+						"rest",
+						"catalogo",
+						"aplicacion",
+						"interfacesprovee",
+						"pdi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET_ComponenteSofwareByUserCi",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/catalogo-aplicaciones-web-admin/rest/catalogo/usuario/componentes/4.105.973-1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"catalogo-aplicaciones-web-admin",
+						"rest",
+						"catalogo",
+						"usuario",
+						"componentes",
+						"4.105.973-1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
