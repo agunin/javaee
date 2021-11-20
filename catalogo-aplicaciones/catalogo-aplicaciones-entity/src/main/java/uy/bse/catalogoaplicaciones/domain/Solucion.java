@@ -33,7 +33,7 @@ public class Solucion extends BaseEntity<Long> {
 
 	@Lob
 	@NotNull
-	@Size(min = 2)
+	@Size(min = 30)
 	@Basic(fetch = FetchType.LAZY)
 	private String descripcion;
 
