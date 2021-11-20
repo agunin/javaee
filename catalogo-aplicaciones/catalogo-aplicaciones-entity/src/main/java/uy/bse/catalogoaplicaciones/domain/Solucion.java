@@ -37,7 +37,7 @@ public class Solucion extends BaseEntity<Long> {
 	@Basic(fetch = FetchType.LAZY)
 	private String descripcion;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<ComponenteSoftware> componentesSoftware;
 
 	public Solucion() {
